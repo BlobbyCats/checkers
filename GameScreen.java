@@ -1,5 +1,4 @@
 //https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html
-package checkers;
 
 import java.awt.*;
 import java.awt.event.*;
