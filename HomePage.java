@@ -15,8 +15,9 @@ public class HomePage extends JFrame implements ActionListener {
 	JLabel tle;
 	
 	public HomePage() {
-		// TODO Auto-generated constructor stub
+		
 		super("Checkers");
+		
 		startGame = new JButton("Start Game");
 		startGame.setActionCommand("start"); //set the command  
 		startGame.addActionListener(this);
@@ -33,17 +34,16 @@ public class HomePage extends JFrame implements ActionListener {
 		tle.setBounds(175, 25, 225, 100);
 				
 		setLayout(null);
-        setSize(500,300);
-        setVisible(true);
+        	setSize(500,300);
+       		setVisible(true);
         
-        add(tle);
-        add(startGame);
-        add(rules);
+        	add(tle);
+        	add(startGame);
+        	add(rules);
         
-        getContentPane().setBackground(Color.red);    
-       
-        
-	    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        	getContentPane().setBackground(Color.red);
+		
+		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
 
 }
