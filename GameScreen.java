@@ -8,30 +8,42 @@ public class GameScreen extends JFrame implements ActionListener {
 	JButton resign = new JButton("Resign");
 	JButton draw = new JButton("Draw");
 	JButton undo = new JButton("Undo");
+
+	JButton board = new JButton("Board");
+
+	JButton rules = new JButton("Rules");
+
+	JButton home = new JButton("Home");
+
+	JPanel boardHolder = new JPanel();
+	JPanel homeRow = new JPanel();
+	JPanel rulesRow = new JPanel();
+
+	JPanel rightPanel = new JPanel();
+	JPanel stats = new JPanel();
+	JPanel buttonsHolder = new JPanel();
+
 	public GameScreen(String title) {
 		super(title);
-		SpringLayout layout = new SpringLayout();
-		setLayout(layout);
-		
-		add(resign);
-		add(draw);
-		add(undo);
-		
-		layout.putConstraint(SpringLayout.WEST, resign, 550, SpringLayout.WEST, getContentPane());
-		layout.putConstraint(SpringLayout.NORTH, resign, 300, SpringLayout.NORTH, getContentPane());
-		
-		layout.putConstraint(SpringLayout.WEST, draw, 675, SpringLayout.WEST, getContentPane());
-		layout.putConstraint(SpringLayout.NORTH, draw, 300, SpringLayout.NORTH, getContentPane());
-		
-		layout.putConstraint(SpringLayout.WEST, undo, 610, SpringLayout.WEST, getContentPane());
-		layout.putConstraint(SpringLayout.NORTH, undo, 350, SpringLayout.NORTH, getContentPane());
-		
-		
-		resign.addActionListener(this);
-		undo.addActionListener(this);
-		draw.addActionListener(this);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+
+		boardHolder.add(board);
+		stats.add(new JLabel("YOOOOO"));
+		buttonsHolder.add(resign);
+		buttonsHolder.add(draw);
+		buttonsHolder.add(undo);
+		rightPanel.add(stats);
+		rightPanel.add(buttonsHolder);
+		homeRow.add(home);
+		rulesRow.add(rules);
+
+		setLayout(new BorderLayout());
+		add(boardHolder, BorderLayout.WEST);
+		add(rightPanel, BorderLayout.EAST);
+		add(homeRow, BorderLayout.NORTH);
+		add(rulesRow, BorderLayout.SOUTH);
 	}
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("hi");
