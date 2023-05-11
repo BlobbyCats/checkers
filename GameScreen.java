@@ -5,6 +5,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GameScreen extends JFrame implements ActionListener {
+	Color background = new Color(138, 189, 227);
+	Font plFont = new Font("Verdana", Font.PLAIN, 20);
+
 	JButton resign = new JButton("Resign");
 	JButton draw = new JButton("Draw");
 	JButton undo = new JButton("Undo");
@@ -13,7 +16,7 @@ public class GameScreen extends JFrame implements ActionListener {
 
 	JButton rules = new JButton("Rules");
 
-	JButton home = new JButton("Home");
+	JButton home = new JButton();
 
 	JPanel boardHolder = new JPanel();
 	JPanel homeRow = new JPanel();
@@ -23,11 +26,28 @@ public class GameScreen extends JFrame implements ActionListener {
 	JPanel stats = new JPanel();
 	JPanel buttonsHolder = new JPanel();
 
+	JPanel empty = new JPanel();
+
 	public GameScreen(String title) {
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		homeRow.setBackground(background);
+		stats.setBackground(background);
+		buttonsHolder.setBackground(background);
+		rightPanel.setBackground(background);
+		rulesRow.setBackground(background);
+		boardHolder.setBackground(background);
+		empty.setBackground(background);
 
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+		homeRow.setLayout(new BoxLayout(homeRow, BoxLayout.X_AXIS));
+
+		ImageIcon homeIcon = new ImageIcon("homeIcon.png");
+		Image homeImg = homeIcon.getImage();
+		homeImg = homeImg.getScaledInstance(70, 40, java.awt.Image.SCALE_SMOOTH);
+		homeIcon = new ImageIcon(homeImg);
+		home.setIcon(homeIcon);
+		homeRow.setPreferredSize(new Dimension(800, 70));
 
 		boardHolder.add(board);
 		stats.add(new JLabel("YOOOOO"));
@@ -36,6 +56,8 @@ public class GameScreen extends JFrame implements ActionListener {
 		buttonsHolder.add(undo);
 		rightPanel.add(stats);
 		rightPanel.add(buttonsHolder);
+		homeRow.add(Box.createRigidArea(new Dimension(20, 20)));
+		homeRow.add(Box.createVerticalGlue());
 		homeRow.add(home);
 		rulesRow.add(rules);
 
@@ -44,6 +66,7 @@ public class GameScreen extends JFrame implements ActionListener {
 		add(rightPanel, BorderLayout.EAST);
 		add(homeRow, BorderLayout.NORTH);
 		add(rulesRow, BorderLayout.SOUTH);
+		add(empty, BorderLayout.CENTER);
 	}
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("hi");
