@@ -44,11 +44,19 @@ public class Rule extends JFrame implements ActionListener {
      	frame.setVisible(true);//make frame visible
      
 	}
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent evt) {
 		// TODO Auto-generated method stub
+			if(evt.getActionCommand().equals("Home")) {
 			
 		}
-	
+		else {
+		
+		  }	
+		}
+		public static void main(String[] args) {
+		new Rule();
+		
+	}
 
 	
 }
