@@ -41,13 +41,26 @@ public class GameScreen extends JFrame implements ActionListener {
 
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		homeRow.setLayout(new BoxLayout(homeRow, BoxLayout.X_AXIS));
+		rulesRow.setLayout(new BoxLayout(rulesRow, BoxLayout.X_AXIS));
 
 		ImageIcon homeIcon = new ImageIcon("homeIcon.png");
 		Image homeImg = homeIcon.getImage();
 		homeImg = homeImg.getScaledInstance(70, 40, java.awt.Image.SCALE_SMOOTH);
 		homeIcon = new ImageIcon(homeImg);
 		home.setIcon(homeIcon);
+
+		resign.setFont(plFont);
+		resign.setPreferredSize(new Dimension(100, 35));
+		draw.setFont(plFont);
+		draw.setPreferredSize(new Dimension(100, 35));
+		undo.setFont(plFont);
+		undo.setPreferredSize(new Dimension(100, 35));
+		
+		rules.setFont(plFont);
+		rules.setPreferredSize(new Dimension(100, 50));
+
 		homeRow.setPreferredSize(new Dimension(800, 70));
+		rulesRow.setPreferredSize(new Dimension(800, 70));
 
 		boardHolder.add(board);
 		stats.add(new JLabel("YOOOOO"));
@@ -59,7 +72,10 @@ public class GameScreen extends JFrame implements ActionListener {
 		homeRow.add(Box.createRigidArea(new Dimension(20, 20)));
 		homeRow.add(Box.createVerticalGlue());
 		homeRow.add(home);
+		rulesRow.add(Box.createHorizontalGlue());
 		rulesRow.add(rules);
+		rulesRow.add(Box.createRigidArea(new Dimension(20, 20)));
+		rulesRow.add(Box.createVerticalGlue());
 
 		setLayout(new BorderLayout());
 		add(boardHolder, BorderLayout.WEST);
