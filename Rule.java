@@ -21,11 +21,16 @@ public class Rule extends JFrame implements ActionListener {
 		
        // label.setText(" Checkers is a board game played between 2 people on an 8x8 board. Each person had 12 pieces." );
         
-        label.setText("<html> 1. Checkers is a board game played between 2 people on an 8x8 board. "
-        		+ "<br/> 2. Each person had 12 pieces." + " <br/> 3. Darker color goes first." + 
-        		"<br/> 4.Pieces are always moved diagonally" + 
-        		"<br/> </t> a. Pawns can only be moved forward - diagonally" + " .</html>" );
+       label.setText("<html> <pre> 1. Checkers is a board game played between 2 people on an 8x8 board. "
+        		+ "<pre> 2. Each person had 12 pieces." + " <pre> 3. Darker color goes first." + 
+        		"<pre> 4. Pieces are always moved diagonally" + 
+        		" <pre>    a. Pawns can only be moved \forward - diagonally <pre>" +
+        		"    b. Kings can be moved \backwards <pre>"+ "5. A King can be made by moving a pawn to the opposite side of the board"
 
+        		+ "<pre>6. To capture the opponent pieces your pieces leaps over one of the opponent <pre> pieces and land in straight  diagonal line on the other sides"
+        		+ "7. If neither player has legal moves, then it is a draw <pre>"
+        		+ "8. You win the game when the opponent has no more pieces or cannot move"
+        		+ " </html>" );
         
 		label.setHorizontalAlignment(JLabel.CENTER);
 		
