@@ -20,11 +20,12 @@ public class HomePage extends JFrame implements ActionListener {
 	JTextField pl2;
 	String p1;
 	String p2;
-	
+	HomePageBkgd d;
 	
 	public HomePage() {
 		// TODO Auto-generated constructor stub
 		super("Checkers");
+		d = new HomePageBkgd();
 		startGame = new JButton("Start Game");
 		startGame.setActionCommand("start"); //set the command  
 		startGame.addActionListener(this);
@@ -60,9 +61,9 @@ public class HomePage extends JFrame implements ActionListener {
 		pl2.setBounds(275, 275, 250, 20);
 
 		tle = new JLabel("Checkers");
-		Font tleFont = new Font("Verdana", Font.BOLD, 30);
+		Font tleFont = new Font("Verdana", Font.BOLD, 50);
 		tle.setFont(tleFont);
-		tle.setBounds(325, 25, 225, 100);
+		tle.setBounds(275, 25, 300, 120);
 		
 		warning1 = new JLabel("");
 		warning1.setFont(plFont);
@@ -88,7 +89,7 @@ public class HomePage extends JFrame implements ActionListener {
         setSize(800,500);
         setVisible(true);
         
-        getContentPane().setBackground(Color.red);    
+        getContentPane().setBackground(Colors.LIGHT_BROWN);    
        
         
 	    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
