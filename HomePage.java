@@ -44,6 +44,7 @@ public class HomePage extends JFrame implements ActionListener {
 		
 		// Player stuff
 		Font plFont = new Font("Verdana", Font.PLAIN, 20);
+		Color color = new Color(12, 34, 56);
 		
 		// Player 1
 		pl1Lbl = new JLabel("Player 1 Name:");
