@@ -26,6 +26,8 @@ public class HomePage extends JFrame implements ActionListener {
 		// TODO Auto-generated constructor stub
 		super("Checkers");
 		d = new HomePageBkgd();
+		d.paint();
+		
 		startGame = new JButton("Start Game");
 		startGame.setActionCommand("start"); //set the command  
 		startGame.addActionListener(this);
@@ -72,7 +74,6 @@ public class HomePage extends JFrame implements ActionListener {
 		warning2 = new JLabel("");
 		warning2.setFont(plFont);
 		warning2.setBounds(300, 255, 225, 100);
-		
         
         add(tle);
         add(pl1Lbl);
@@ -86,16 +87,13 @@ public class HomePage extends JFrame implements ActionListener {
         add(warning2);
         
         setLayout(null);
-        setSize(800,500);
-        setVisible(true);
-        
-        getContentPane().setBackground(Colors.LIGHT_BROWN);    
+	    setSize(800,500);
+	    setVisible(true);
        
-        
 	    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
 	
-	public void actionPerformed( ActionEvent evt) {
+	public void actionPerformed(ActionEvent evt) {
 		if(evt.getActionCommand().equals("start")) {
 			if (pl1.getText().isEmpty() && pl2.getText().isEmpty()) {
 				warning1.setText("Please enter a name");
@@ -111,7 +109,8 @@ public class HomePage extends JFrame implements ActionListener {
 			}
 		} else if (evt.getActionCommand().equals("rules")) {
 			System.out.println("Here are the rules");
-		} else if(evt.getActionCommand().equals("exit")) {
+			Rules r = new Rules();
+;		} else if(evt.getActionCommand().equals("exit")) {
 			System.exit(0);
 		}
 	}
