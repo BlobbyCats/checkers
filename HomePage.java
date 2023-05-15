@@ -20,13 +20,13 @@ public class HomePage extends JFrame implements ActionListener {
 	JTextField pl2;
 	String p1;
 	String p2;
-	HomePageBkgd d;
+	//HomePageBkgd d;
 	
 	public HomePage() {
 		// TODO Auto-generated constructor stub
 		super("Checkers");
-		d = new HomePageBkgd();
-		d.paint();
+		//d = new HomePageBkgd();
+		//d.paint();
 		
 		startGame = new JButton("Start Game");
 		startGame.setActionCommand("start"); //set the command  
@@ -90,6 +90,8 @@ public class HomePage extends JFrame implements ActionListener {
 	    setSize(800,500);
 	    setVisible(true);
        
+	    getContentPane().setBackground(Colors.LIGHT_BROWN);
+	    
 	    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
 	
@@ -100,16 +102,22 @@ public class HomePage extends JFrame implements ActionListener {
 				warning2.setText("Please enter a name");
 			} else if(pl1.getText().isEmpty()) {
 				warning1.setText("Please enter a name");
+				warning2.setText("");
 			} else if(pl2.getText().isEmpty()) {
+				warning1.setText("");
 				warning2.setText("Please enter a name");
 			} else {
 				p1 = pl1.getText();
 				p2 = pl2.getText();
 				System.out.println("Let the game begin");
+				GameScreen gs = new GameScreen("Checkers", p1, p2, 0, 0, 0);
+				gs.setVisible(true);
+				this.setVisible(false);
 			}
 		} else if (evt.getActionCommand().equals("rules")) {
 			System.out.println("Here are the rules");
-			Rules r = new Rules();
+			Rule r = new Rule();
+			this.setVisible(false);
 ;		} else if(evt.getActionCommand().equals("exit")) {
 			System.exit(0);
 		}
