@@ -36,6 +36,7 @@ public class GameScreen extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
+		setSize(800, 500);
 
 		p1 = player1;
 		p2 = player2;
