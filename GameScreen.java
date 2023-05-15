@@ -172,10 +172,7 @@ public class GameScreen extends JFrame implements ActionListener {
 			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want to undo your move?", "Message", JOptionPane.YES_NO_OPTION);
 		}
 		if (e.getActionCommand().equals("rules")) {
-			Rule rule = new Rule();
-			this.setVisible(false);
-			rule.setSize(this.getWidth(), this.getHeight());
-			rule.setVisible(true);
+			// popup
 		}
 		if (e.getActionCommand().equals("home")) {
 			HomePage homepage = new HomePage();
