@@ -53,7 +53,9 @@ if(evt.getActionCommand().equals("Home")) {
 			
 		}
 		else {
-			Game g= new Game();
+			
+	GameScreen g= new GameScreen("Checkers!", hp.getP1, hp.getP2, 0, 0, 0);
+			
 			
 		}
       setVisible(false);
