@@ -10,7 +10,7 @@ public class Rule extends JFrame implements ActionListener {
     JLabel label= new JLabel();// display area of String of text
 
 
-	public Rule() {
+	public Rule(String p1Name, String p2Name) {
 		button.setBounds(20, 10, 100,30);
 		button.addActionListener(this);
 		
@@ -54,7 +54,7 @@ if(evt.getActionCommand().equals("Home")) {
 		}
 		else {
 			
-	GameScreen g= new GameScreen("Checkers!", hp.getP1, hp.getP2, 0, 0, 0);
+	GameScreen g= new GameScreen("Checkers!", p1Name, p2Name, 0, 0, 0);
 			
 			
 		}
@@ -62,11 +62,5 @@ if(evt.getActionCommand().equals("Home")) {
 			
 		}
 		
-		
-	public static void main(String[] args) {
-		new Rule();
-		
-	}
-
 	
 }
