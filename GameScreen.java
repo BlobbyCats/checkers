@@ -184,10 +184,5 @@ public class GameScreen extends JFrame implements ActionListener {
 			homepage.setVisible(true);
 		}
 	}
-	public static void main (String[] args) {
-		GameScreen game = new GameScreen("Checkers!", "Seraphina", "Bagasanthi", 2, 40, 23);
-		game.setSize(800, 500);
-		game.setVisible(true);
-	}
 }
 
