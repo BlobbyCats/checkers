@@ -61,6 +61,9 @@ if(evt.getActionCommand().equals("Home")) {
 			
 	GameScreen g= new GameScreen("Checkers!", p1, p2, 0, 0, 0);
 			
+		g.setVisible(true);
+			
+			
 			
 		}
       setVisible(false);
