@@ -6,11 +6,16 @@ import javax.swing.*;
 public class Rule extends JFrame implements ActionListener {
 	JButton button = new JButton(" Start Game");
 	JButton home = new JButton(" Home ");
+	String p1 = "";
+	String p2 = "";
 	
     JLabel label= new JLabel();// display area of String of text
 
 
 	public Rule(String p1Name, String p2Name) {
+		p1 = p1Name;
+		p2 = p2Name; 
+		
 		button.setBounds(20, 10, 100,30);
 		button.addActionListener(this);
 		
@@ -54,7 +59,7 @@ if(evt.getActionCommand().equals("Home")) {
 		}
 		else {
 			
-	GameScreen g= new GameScreen("Checkers!", p1Name, p2Name, 0, 0, 0);
+	GameScreen g= new GameScreen("Checkers!", p1, p2, 0, 0, 0);
 			
 			
 		}
