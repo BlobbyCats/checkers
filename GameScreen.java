@@ -172,13 +172,13 @@ public class GameScreen extends JFrame implements ActionListener {
 		}
 		if (e.getActionCommand().equals("rules")) {
 			Rule rule = new Rule();
-			game.setVisible(false);
+			this.setVisible(false);
 			rule.setSize(this.getWidth(), this.getHeight());
 			rule.setVisible(true);
 		}
 		if (e.getActionCommand().equals("home")) {
 			HomePage homepage = new HomePage();
-			game.setVisible(false);
+			this.setVisible(false);
 			homepage.setSize(this.getWidth(), this.getHeight());
 			homepage.setVisible(true);
 		}
