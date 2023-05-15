@@ -116,7 +116,9 @@ public class HomePage extends JFrame implements ActionListener {
 			}
 		} else if (evt.getActionCommand().equals("rules")) {
 			System.out.println("Here are the rules");
-			Rule r = new Rule();
+			p1 = pl1.getText();
+			p2 = pl2.getText();
+			Rule r = new Rule(p1, p2);
 			this.setVisible(false);
 ;		} else if(evt.getActionCommand().equals("exit")) {
 			System.exit(0);

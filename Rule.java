@@ -53,22 +53,18 @@ public class Rule extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent evt) {
 		// TODO Auto-generated method stub
 	
-if(evt.getActionCommand().equals("Home")) {
-	HomePage hp= new HomePage();
+	if(evt.getActionCommand().equals("Home")) {
+		HomePage hp= new HomePage();
 			
-		}
-		else {
-			
-	GameScreen g= new GameScreen("Checkers!", p1, p2, 0, 0, 0);
-			
+	}
+	else {
+		GameScreen g = new GameScreen("Checkers!", p1, p2, 0, 0, 0);
 		g.setVisible(true);
 			
+	}
+    setVisible(false);
 			
-			
-		}
-      setVisible(false);
-			
-		}
+	}
 		
 	
 }
