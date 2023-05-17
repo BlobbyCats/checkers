@@ -90,7 +90,7 @@ public class FinalScreen extends JFrame implements ActionListener{
         score.setBounds(625, 70, 160, 50);
         add(score);
 
-		message.setText("Congratulations, " + name2 + "! You win!"); //requires boolean for deciding who wins
+		message.setText("Congratulations, " + name2 + "! You win!");
 		message.setForeground(Color.white);
 		message.setBounds(550, 160, 500, 50);
 		add(message);
@@ -145,23 +145,20 @@ public class FinalScreen extends JFrame implements ActionListener{
 		}
 		if (evt.getActionCommand().equals("rematch")) {
 			//new game screen created, new game
-            GameScreen g1 = new GameScreen("checkers", "example p1", 
-            "noobmaster p2", 1, 4, 3); // example input
+            GameScreen g1 = new GameScreen("checkers", name1 , 
+            name2 , 4, 4, 3); // example input
             g1.setVisible(false);
             g1.setSize(this.getWidth(), this.getHeight());
             gameN++;
             gameNum.setText("Game #" + gameN);
 
 		}
-
-		
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FinalScreen demo = new FinalScreen();
 		demo.setVisible(true);
-
-	}
+*/
 
 }
