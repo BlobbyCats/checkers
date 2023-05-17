@@ -18,9 +18,11 @@ public class Rule extends JFrame implements ActionListener {
 		
 		button.setBounds(20, 10, 100,30);
 		button.addActionListener(this);
+		button.getActionCommand("Game");
 		
 		home.setBounds(870,10,100,30);
 		home.addActionListener(this);
+		home.getActionCommand("home");
 	
 		
        // label.setText(" Checkers is a board game played between 2 people on an 8x8 board. Each person had 12 pieces." );
