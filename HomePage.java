@@ -135,14 +135,44 @@ public class HomePage extends JFrame implements ActionListener {
 			warning1.setText("Please enter a new name");
 			warning2.setText("Please enter a new name");
 			return false;
-		} else if(p1.length() > 12) {
-			System.out.println("The name is too long, so it is taking the first 12 characters");
-			p1 = p1.substring(0, 11);
-			return true;
-		} else if (p2.length() > 12) {
-			System.out.println("The name is too long, so it is taking the first 12 characters");
-			p2 = p2.substring(0, 11);
-			return true;
+		} else if(p1.length() >= 12 && p2.length() >= 12){
+			int n = JOptionPane.showConfirmDialog(this, "The both names are too long, so it is taking the first 12 characters! "
+					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
+			if (n == JOptionPane.YES_OPTION) {
+				p1 = p1.substring(0, 11);
+				p2 = p2.substring(0, 11);
+				return true;
+			} else {
+				warning1.setBounds(275, 155, 350, 100);
+				warning2.setBounds(275, 255, 350, 100);
+				warning1.setText("Please enter a new name");
+				warning2.setText("Please enter a new name");
+				return false;
+			}
+		} else if(p1.length() >= 12) {
+			int n = JOptionPane.showConfirmDialog(this, "The player 1's name is too long, so it is taking the first 12 characters! "
+					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
+			if (n == JOptionPane.YES_OPTION) {
+				p1 = p1.substring(0, 11);
+				return true;
+			} else {
+				warning1.setBounds(275, 155, 350, 100);
+				warning1.setText("Please enter a new name");
+				warning2.setText("");
+				return false;
+			}
+		} else if (p2.length() >= 12) {
+			int n = JOptionPane.showConfirmDialog(this, "The player 2's name too long, so it is taking the first 12 characters! "
+					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
+			if (n == JOptionPane.YES_OPTION) {
+				p2 = p2.substring(0, 11);
+				return true;
+			} else {
+				warning1.setText("");
+				warning2.setBounds(275, 155, 350, 100);
+				warning2.setText("Please enter a new name");
+				return false;
+			}
 		} else {
 			return true;
 		}
