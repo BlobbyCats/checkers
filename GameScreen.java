@@ -16,6 +16,7 @@ public class GameScreen extends JFrame implements ActionListener {
 	int move = 1;
 	boolean isP1Turn = false;
 	boolean isP2Turn = false;
+	String whoWins = "";
 
 	JButton resign = new JButton("Resign");
 	JButton draw = new JButton("Draw");
@@ -155,18 +156,24 @@ public class GameScreen extends JFrame implements ActionListener {
 			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want to resign?", "Message", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				if (isP1Turn) {
+					whoWins = "p2";
 					p2Wins++;
-					System.out.println(p2 + p2Wins);
+					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins);
 				}
 				else {
+					whoWins = "p1";
 					p1Wins++;
-					System.out.println(p1 + p1Wins);
+					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins);
 				}
 			}
 
 		}
 		if (e.getActionCommand().equals("draw")) {
 			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want a draw?", "Message", JOptionPane.YES_NO_OPTION);
+			if (n == JOptionPane.YES_OPTION) {
+				whoWins = "neither";
+				FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins);
+			}
 		}
 		if (e.getActionCommand().equals("undo")) {
 			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want to undo your move?", "Message", JOptionPane.YES_NO_OPTION);

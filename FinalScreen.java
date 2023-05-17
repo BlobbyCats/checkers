@@ -32,12 +32,12 @@ public class FinalScreen extends JFrame implements ActionListener{
 	JPanel info = new JPanel();
 	
 
-	public FinalScreen() {
-		gameN = 0; //would be set to game number taken from actual game
-		gScore1 = 0;
-		gScore2 = 1;
-        name1 = "bill";
-        name2 = "noobmaster";
+	public FinalScreen(int gNum, int score1, int score2, String n1, String n2, String whoWins) {
+		gameN = gNum; //would be set to game number taken from actual game
+		gScore1 = score1;
+		gScore2 = score2;
+        name1 = n1;
+        name2 = n2;
 		
         ImageIcon icon = new ImageIcon("homeIcon.png");
 		Image img = icon.getImage();
@@ -134,10 +134,10 @@ public class FinalScreen extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent evt) {
 		if (evt.getActionCommand().equals("home") || 
             evt.getActionCommand().equals("reset")) {
-			/*HomePage h1 = new HomePage();
+			HomePage h1 = new HomePage();
             h1.setVisible(false);
             h1.setSize(this.getWidth(), this.getHeight());
-			h1.setVisible(true);*/
+			h1.setVisible(true);
 
 		}
 		if (evt.getActionCommand().equals("close")) {
@@ -145,10 +145,10 @@ public class FinalScreen extends JFrame implements ActionListener{
 		}
 		if (evt.getActionCommand().equals("rematch")) {
 			//new game screen created, new game
-            /*GameScreen g1 = new GameScreen("checkers", "example p1", 
+            GameScreen g1 = new GameScreen("checkers", "example p1", 
             "noobmaster p2", 1, 4, 3); // example input
             g1.setVisible(false);
-            g1.setSize(this.getWidth(), this.getHeight());*/
+            g1.setSize(this.getWidth(), this.getHeight());
             gameN++;
             gameNum.setText("Game #" + gameN);
 
