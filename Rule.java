@@ -18,11 +18,11 @@ public class Rule extends JFrame implements ActionListener {
 		
 		button.setBounds(20, 10, 100,30);
 		button.addActionListener(this);
-		button.getActionCommand("Game");
+		button.setActionCommand("Game");
 		
 		home.setBounds(870,10,100,30);
 		home.addActionListener(this);
-		home.getActionCommand("home");
+		home.setActionCommand("Home");
 	
 		
        // label.setText(" Checkers is a board game played between 2 people on an 8x8 board. Each person had 12 pieces." );
@@ -40,9 +40,9 @@ public class Rule extends JFrame implements ActionListener {
 
         
 		
-	label.setHorizontalAlignment(JLabel.CENTER);
+		label.setHorizontalAlignment(JLabel.CENTER);
 
-     	setSize(1000 ,600);//set the size of the frame
+     	setSize(800 ,500);//set the size of the frame
         setTitle(" Rule Page ");
      	getContentPane().setBackground(Colors.LIGHT_BROWN);
      	add(button);// add the button 
@@ -55,16 +55,15 @@ public class Rule extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent evt) {
 		// TODO Auto-generated method stub
 	
-	if(evt.getActionCommand().equals("Home")) {
-		HomePage hp= new HomePage();
-			
-	}
-	else {
-		GameScreen g = new GameScreen("Checkers!", p1, p2, 0, 0, 0);
-		g.setVisible(true);
-	}
-    setVisible(false);
-			
+		if(evt.getActionCommand().equals("Home")) {
+			HomePage hp = new HomePage();
+			hp.setVisible(true);
+		}
+		else if (evt.getActionCommand().equals("Game")) {
+			GameScreen g = new GameScreen("Checkers!", p1, p2, 0, 0, 0);
+			g.setVisible(true);
+		}
+    	setVisible(false);		
 	}
 		
 	
