@@ -97,31 +97,54 @@ public class HomePage extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent evt) {
 		if(evt.getActionCommand().equals("start")) {
-			if (pl1.getText().isEmpty() && pl2.getText().isEmpty()) {
-				warning1.setText("Please enter a name");
-				warning2.setText("Please enter a name");
-			} else if(pl1.getText().isEmpty()) {
-				warning1.setText("Please enter a name");
-				warning2.setText("");
-			} else if(pl2.getText().isEmpty()) {
-				warning1.setText("");
-				warning2.setText("Please enter a name");
-			} else {
-				p1 = pl1.getText();
-				p2 = pl2.getText();
+			if (checkNames()) {
 				System.out.println("Let the game begin");
 				GameScreen gs = new GameScreen("Checkers", p1, p2, 0, 0, 0);
 				gs.setVisible(true);
 				this.setVisible(false);
 			}
-		} else if (evt.getActionCommand().equals("rules")) {
-			System.out.println("Here are the rules");
-			p1 = pl1.getText();
-			p2 = pl2.getText();
-			Rule r = new Rule(p1, p2);
-			this.setVisible(false);
-;		} else if(evt.getActionCommand().equals("exit")) {
+		} else if(evt.getActionCommand().equals("rules")) {
+			if(checkNames()) {
+				System.out.println("Here are the rules");
+				Rule r = new Rule(p1, p2);
+				this.setVisible(false);
+			}
+		} else if(evt.getActionCommand().equals("exit")) {
 			System.exit(0);
+		}
+	}
+	
+	public boolean checkNames() {
+		p1 = pl1.getText();
+		p2 = pl2.getText();
+		if (p1.isEmpty() && p2.isEmpty()) {
+			warning1.setText("Please enter a name");
+			warning2.setText("Please enter a name");
+			return false;
+		} else if(p1.isEmpty()) {
+			warning1.setText("Please enter a name");
+			warning2.setText("");
+			return false;
+		} else if(p2.isEmpty()) {
+			warning1.setText("");
+			warning2.setText("Please enter a name");
+			return false;
+		} else if(p1.equals(p2)) {
+			warning1.setBounds(275, 155, 350, 100);
+			warning2.setBounds(275, 255, 350, 100);
+			warning1.setText("Please enter a new name");
+			warning2.setText("Please enter a new name");
+			return false;
+		} else if(p1.length() > 12) {
+			System.out.println("The name is too long, so it is taking the first 12 characters");
+			p1 = p1.substring(0, 11);
+			return true;
+		} else if (p2.length() > 12) {
+			System.out.println("The name is too long, so it is taking the first 12 characters");
+			p2 = p2.substring(0, 11);
+			return true;
+		} else {
+			return true;
 		}
 	}
 	
