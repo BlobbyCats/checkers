@@ -13,6 +13,9 @@ public class Board extends JPanel implements ActionListener {
     public Board() {
 		prepareGame();
     }
+	public int getPiece(int row, int col) {
+		return checkersData[row][col];
+	}
 	public void paintComponent(Graphics g) {
         // Draw a two-pixel black border around the edges of the canvas. 
 
