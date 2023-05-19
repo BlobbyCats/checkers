@@ -31,6 +31,8 @@ public class GameScreen extends JFrame implements ActionListener {
 	JLabel game = new JLabel("Game #" + gameNum);
 	JLabel turn = new JLabel("It is " + "\'s turn.");
 	JLabel toPlay = new JLabel(" to play!");
+	JLabel p1title = new JLabel();
+	JLabel p2title = new JLabel();
 
 	public GameScreen(String title, String player1, String player2, int gNum, int player1Wins, int player2Wins) {
 		super(title);
@@ -45,6 +47,8 @@ public class GameScreen extends JFrame implements ActionListener {
 		game = new JLabel("Game #" + gameNum);
 		p1Wins = player1Wins;
 		p2Wins = player2Wins;
+		p1title = new JLabel(p1);
+		p2title = new JLabel(p2);
 		
 		pickColors();
 		updateTurn();
@@ -58,6 +62,8 @@ public class GameScreen extends JFrame implements ActionListener {
 		add(turn);
 		add(toPlay);
 		add(board);
+		add(p1title);
+		add(p2title);
 
 		rescaleImage("homeIcon.png", home, 55, 47);
 		home.setFocusPainted(false);
@@ -96,8 +102,23 @@ public class GameScreen extends JFrame implements ActionListener {
 
 		board.setPreferredSize(new Dimension(260, 260));
 
-		layout.putConstraint(SpringLayout.WEST, board, 50, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, board, 150, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.WEST, board, 110, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, board, 130, SpringLayout.NORTH, this);
+
+		if (p1Color.equals("black")) {
+			layout.putConstraint(SpringLayout.WEST, p1title, 140, SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.NORTH, p1title, 100, SpringLayout.NORTH, this);
+
+			layout.putConstraint(SpringLayout.WEST, p2title, 140, SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.NORTH, p2title, 400, SpringLayout.NORTH, this);
+		}
+		else {
+			layout.putConstraint(SpringLayout.WEST, p1title, 140, SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.NORTH, p1title, 400, SpringLayout.NORTH, this);
+
+			layout.putConstraint(SpringLayout.WEST, p2title, 140, SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.NORTH, p2title, 100, SpringLayout.NORTH, this);
+		}
 
 		resign.addActionListener(this);
 		draw.addActionListener(this);
@@ -115,6 +136,8 @@ public class GameScreen extends JFrame implements ActionListener {
 		game.setForeground(Color.WHITE);
 		turn.setForeground(Color.WHITE);
 		toPlay.setForeground(Color.WHITE);
+		p1title.setForeground(Color.WHITE);
+		p2title.setForeground(Color.WHITE);
 	}
 	public void updateTurn() {
 		if ((move % 2) == 1) {
