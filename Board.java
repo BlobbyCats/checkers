@@ -32,23 +32,23 @@ public class Board extends JPanel implements ActionListener {
               switch (checkersData[row][col]) {
               case red:
                  g.setColor(Color.RED);
-                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
+                 g.fillOval(6 + col*32, 6 + row*32, 24, 24);
                  break;
               case black:
                  g.setColor(Color.BLACK);
-                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
+                 g.fillOval(6 + col*32, 6 + row*32, 24, 24);
                  break;
               case redKing:
                  g.setColor(Color.RED);
-                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
+                 g.fillOval(6 + col*32, 6 + row*32, 24, 24);
                  g.setColor(Color.WHITE);
-                 g.drawString("K", 7 + col*32, 16 + row*32);
+                 g.drawString("K", 9 + col*32, 18 + row*32);
                  break;
               case blackKing:
                  g.setColor(Color.BLACK);
-                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
+                 g.fillOval(6 + col*32, 6 + row*32, 24, 24);
                  g.setColor(Color.WHITE);
-                 g.drawString("K", 7 + col*32, 16 + row*32);
+                 g.drawString("K", 9 + col*32, 18 + row*32);
                  break;
               }
            }
