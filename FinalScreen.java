@@ -22,6 +22,9 @@ public class FinalScreen extends JFrame implements ActionListener{
 	JButton close = new JButton("exit");
 	JButton rematch = new JButton("rematch");
 	JButton reset = new JButton("reset");
+
+	JLabel p1title = new JLabel();
+	JLabel p2title = new JLabel();
 	
 	JLabel gameNum = new JLabel(); //game #
 	
@@ -48,12 +51,23 @@ public class FinalScreen extends JFrame implements ActionListener{
  * @param n2 - player two's name
  * @param whoWins - string containing which player wins, or if neither wins 
  */
-	public FinalScreen(int gNum, int score1, int score2, String n1, String n2, String whoWins) {
+	public FinalScreen(int gNum, int score1, int score2, String n1, String n2, String whoWins, String p1Color, String p2Color) {
 		gameN = gNum; //would be set to game number taken from actual game
 		gScore1 = score1;
 		gScore2 = score2;
         name1 = n1;
         name2 = n2;
+		p1title.setText(n1);
+		p2title.setText(n2);
+
+		if (p1Color.equals("black")) {
+			p1title.setBounds(100, 20, 50, 20);
+			add(p1title);
+		}
+		else {
+			p2title.setBounds(100, 380, 50, 20);
+			add(p2title);
+		}
 		
         ImageIcon icon = new ImageIcon("homeIcon.png");
 		Image img = icon.getImage();
@@ -146,7 +160,7 @@ public class FinalScreen extends JFrame implements ActionListener{
         winCat.setBounds(575, 200, 300, 100);
         add(winCat);
 
-		b2.setBounds(250, 300, 164, 164);
+		b2.setBounds(230, 250, 164, 164);
 		add(b2);
 		
 		
