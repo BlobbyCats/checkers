@@ -195,12 +195,11 @@ public class FinalScreen extends JFrame implements ActionListener{
 		}
 		if (evt.getActionCommand().equals("rematch")) {
 			//new game screen created, new game
+			gameN++;
             GameScreen g1 = new GameScreen("checkers", name1 , 
-            name2 , 4, 4, 3); // example input
-            g1.setVisible(false);
-            g1.setSize(this.getWidth(), this.getHeight());
-            gameN++;
-            gameNum.setText("Game #" + gameN);
+            name2 , gameN, gScore1, gScore2); 
+            g1.setVisible(true);
+			this.setVisible(false);
 
 		}
 	}

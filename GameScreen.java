@@ -193,11 +193,13 @@ public class GameScreen extends JFrame implements ActionListener {
 					whoWins = "p2";
 					p2Wins++;
 					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
+					this.setVisible(false);
 				}
 				else {
 					whoWins = "p1";
 					p1Wins++;
 					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
+					this.setVisible(false);
 				}
 			}
 
@@ -207,6 +209,7 @@ public class GameScreen extends JFrame implements ActionListener {
 			if (n == JOptionPane.YES_OPTION) {
 				whoWins = "neither";
 				FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
+				this.setVisible(false);
 			}
 		}
 		if (e.getActionCommand().equals("undo")) {
