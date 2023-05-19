@@ -63,18 +63,17 @@ public class FinalScreen extends JFrame implements ActionListener{
 		p2title.setForeground(Color.white);
 
 		if (p1Color.equals("black")) {
-			p1title.setBounds(100, 20, 50, 20);
-			p1.
+			p1title.setBounds(150, 95, 50, 20);
 			add(p1title);
 
-			p2title.setBounds(100, 380, 50, 20);
+			p2title.setBounds(150, 400, 50, 20);
 			add(p2title);
 		}
 		else {
-			p2title.setBounds(100, 20, 50, 20);
+			p2title.setBounds(150, 95, 50, 20);
 			add(p2title);
 
-			p1title.setBounds(100, 380, 50, 20);
+			p1title.setBounds(150, 400, 50, 20);
 			add(p1title);
 		}
 		
@@ -169,7 +168,7 @@ public class FinalScreen extends JFrame implements ActionListener{
         winCat.setBounds(575, 200, 300, 100);
         add(winCat);
 
-		b2.setBounds(230, 250, 164, 164);
+		b2.setBounds(110, 130, 260, 260);
 		add(b2);
 		
 		
