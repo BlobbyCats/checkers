@@ -184,7 +184,7 @@ public class GameScreen extends JFrame implements ActionListener {
 			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want a draw?", "Message", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				whoWins = "neither";
-				FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins);
+				FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
 			}
 		}
 		if (e.getActionCommand().equals("undo")) {
