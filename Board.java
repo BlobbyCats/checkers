@@ -28,27 +28,27 @@ public class Board extends JPanel implements ActionListener {
                  g.setColor(Colors.DARK_BROWN);
               else
                  g.setColor(Colors.LIGHT_BROWN);
-              g.fillRect(2 + col*20, 2 + row*20, 20, 20);
+              g.fillRect(2 + col*32, 2 + row*32, 32, 32);
               switch (checkersData[row][col]) {
               case red:
                  g.setColor(Color.RED);
-                 g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
                  break;
               case black:
                  g.setColor(Color.BLACK);
-                 g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
                  break;
               case redKing:
                  g.setColor(Color.RED);
-                 g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
                  g.setColor(Color.WHITE);
-                 g.drawString("K", 7 + col*20, 16 + row*20);
+                 g.drawString("K", 7 + col*32, 16 + row*32);
                  break;
               case blackKing:
                  g.setColor(Color.BLACK);
-                 g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                 g.fillOval(4 + col*32, 4 + row*32, 24, 24);
                  g.setColor(Color.WHITE);
-                 g.drawString("K", 7 + col*20, 16 + row*20);
+                 g.drawString("K", 7 + col*32, 16 + row*32);
                  break;
               }
            }

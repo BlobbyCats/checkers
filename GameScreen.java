@@ -94,7 +94,7 @@ public class GameScreen extends JFrame implements ActionListener {
 		layout.putConstraint(SpringLayout.WEST, toPlay, 585, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.NORTH, toPlay, 200, SpringLayout.NORTH, this);
 
-		board.setPreferredSize(new Dimension(164, 164));
+		board.setPreferredSize(new Dimension(260, 260));
 
 		layout.putConstraint(SpringLayout.WEST, board, 50, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.NORTH, board, 150, SpringLayout.NORTH, this);
