@@ -136,7 +136,7 @@ public class HomePage extends JFrame implements ActionListener {
 			warning2.setText("Please enter a new name");
 			return false;
 		} else if(p1.length() >= 12 && p2.length() >= 12){
-			int n = JOptionPane.showConfirmDialog(this, "The both names are too long, so it is taking the first 12 characters! "
+			int n = JOptionPane.showConfirmDialog(this, "Both names are too long, so we will take the first 12 characters! "
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				p1 = p1.substring(0, 11);
@@ -150,7 +150,7 @@ public class HomePage extends JFrame implements ActionListener {
 				return false;
 			}
 		} else if(p1.length() >= 12) {
-			int n = JOptionPane.showConfirmDialog(this, "The player 1's name is too long, so it is taking the first 12 characters! "
+			int n = JOptionPane.showConfirmDialog(this, "Player 1's name is too long, so we will take the first 12 characters! "
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				p1 = p1.substring(0, 11);
@@ -162,7 +162,7 @@ public class HomePage extends JFrame implements ActionListener {
 				return false;
 			}
 		} else if (p2.length() >= 12) {
-			int n = JOptionPane.showConfirmDialog(this, "The player 2's name too long, so it is taking the first 12 characters! "
+			int n = JOptionPane.showConfirmDialog(this, "Player 2's name too long, so we will take the first 12 characters! "
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				p2 = p2.substring(0, 11);

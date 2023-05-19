@@ -149,6 +149,7 @@ public class GameScreen extends JFrame implements ActionListener {
 			p1Color = "red";
 		}
 	}
+	
 	public void rescaleImage(String fileName, JButton button, int width, int height) {
 		ImageIcon icon = new ImageIcon(fileName);
 		Image img = icon.getImage();
@@ -187,8 +188,8 @@ public class GameScreen extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, "<html> <pre> 1. Checkers is a board game played between 2 people on an 8x8 board. "
 			+ "<pre> 2. Each person had 12 pieces." + " <pre> 3. Darker color goes first." +
 			"<pre> 4. Pieces are always moved diagonally" +
-			" <pre>    a. Pawns can only be moved \forward - diagonally <pre>" +
-			"    b. Kings can be moved \backwards <pre>"+ "5. A King can be made by moving a pawn to the opposite side of the board"
+			" <pre>    a. Pawns can only be moved forward - diagonally <pre>" +
+			"    b. Kings can be moved backwards <pre>"+ "5. A King can be made by moving a pawn to the opposite side of the board"
 
 
 			+ "<pre>6. To capture the opponent pieces your pieces leaps over one of the opponent <pre> pieces and land in straight  diagonal line on the other sides"
