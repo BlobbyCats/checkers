@@ -58,10 +58,13 @@ public class FinalScreen extends JFrame implements ActionListener{
         name1 = n1;
         name2 = n2;
 		p1title.setText(n1);
+		p1title.setForeground(Color.white);
 		p2title.setText(n2);
+		p2title.setForeground(Color.white);
 
 		if (p1Color.equals("black")) {
 			p1title.setBounds(100, 20, 50, 20);
+			p1.
 			add(p1title);
 
 			p2title.setBounds(100, 380, 50, 20);
