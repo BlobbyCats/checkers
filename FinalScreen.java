@@ -63,10 +63,16 @@ public class FinalScreen extends JFrame implements ActionListener{
 		if (p1Color.equals("black")) {
 			p1title.setBounds(100, 20, 50, 20);
 			add(p1title);
-		}
-		else {
+
 			p2title.setBounds(100, 380, 50, 20);
 			add(p2title);
+		}
+		else {
+			p2title.setBounds(100, 20, 50, 20);
+			add(p2title);
+
+			p1title.setBounds(100, 380, 50, 20);
+			add(p1title);
 		}
 		
         ImageIcon icon = new ImageIcon("homeIcon.png");
