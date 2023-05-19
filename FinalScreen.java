@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * @author Eileen
+ */
+
 public class FinalScreen extends JFrame implements ActionListener{
 	Font plFont = new Font("Verdana", Font.PLAIN, 16);
 	private int gameN;
@@ -30,8 +34,20 @@ public class FinalScreen extends JFrame implements ActionListener{
 	JLabel p2Score = new JLabel();
 	
 	JPanel info = new JPanel();
-	
 
+	Board b2 = new Board();
+	
+/**
+ * Creates a FinalScreen window displaying the board and a message specifying the victor
+ * or whether no one wins
+ * 
+ * @param gNum - num of how many games have been played including the current game
+ * @param score1 - player one's number of wins
+ * @param score2 - player two's number of wins
+ * @param n1 - player one's name
+ * @param n2 - player two's name
+ * @param whoWins - string containing which player wins, or if neither wins 
+ */
 	public FinalScreen(int gNum, int score1, int score2, String n1, String n2, String whoWins) {
 		gameN = gNum; //would be set to game number taken from actual game
 		gScore1 = score1;
@@ -90,27 +106,35 @@ public class FinalScreen extends JFrame implements ActionListener{
         score.setBounds(625, 70, 160, 50);
         add(score);
 
-		message.setText("Congratulations, " + name2 + "! You win!");
+		if (whoWins == "p1") {
+			message.setText("Congratulations, " + name1 + "! You win!");
+		}
+		else if (whoWins == "p2") {
+			message.setText("Congratulations, " + name2 + "! You win!");
+		}
+		else {
+			message.setText("No one wins!");
+		}
 		message.setForeground(Color.white);
 		message.setBounds(550, 160, 500, 50);
 		add(message);
 
 		p2Name.setText("p2: " + name2); //placeholder name, will be set to user's input
 		p2Name.setForeground(Color.white);
-        p2Name.setBounds(600, 100, 100, 50);
+        p2Name.setBounds(700, 100, 100, 50);
         add(p2Name);
 		p1Name.setText("p1: " + name1); //will be set to user's input
 		p1Name.setForeground(Color.white);
-        p1Name.setBounds(700, 100, 100, 50);
+        p1Name.setBounds(600, 100, 100, 50);
         add(p1Name);
 		
 		p1Score.setText("" + gScore1);
-        p1Score.setBounds(700, 120, 200, 50);
+        p1Score.setBounds(600, 120, 200, 50);
 		p1Score.setForeground(Color.white);
         add(p1Score);
 		p2Score.setText("" + gScore2);
 		p2Score.setForeground(Color.white);
-        p2Score.setBounds(600, 120, 200, 50);
+        p2Score.setBounds(700, 120, 200, 50);
         add(p2Score);
 
         ImageIcon catto = new ImageIcon("partycatcropped.gif");
@@ -121,6 +145,10 @@ public class FinalScreen extends JFrame implements ActionListener{
         winCat.setIcon(catto);
         winCat.setBounds(575, 200, 300, 100);
         add(winCat);
+
+		b2.setBounds(250, 300, 164, 164);
+		add(b2);
+		
 		
 		setLayout(null);
 		setSize(800, 500);
@@ -157,8 +185,7 @@ public class FinalScreen extends JFrame implements ActionListener{
 
 	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		FinalScreen demo = new FinalScreen();
-		demo.setVisible(true);
-*/
+		FinalScreen demo = new FinalScreen(5, 2, 3, "name1", "name2", "p1");
+		demo.setVisible(true);*/
 
 }
