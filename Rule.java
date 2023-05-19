@@ -61,7 +61,6 @@ public class Rule extends JFrame implements ActionListener {
      
     }
 
-
     public void rescaleImage(String fileName, JButton button, int width, int height) {
         ImageIcon icon = new ImageIcon(fileName);
         Image img = icon.getImage();
@@ -69,7 +68,6 @@ public class Rule extends JFrame implements ActionListener {
         icon = new ImageIcon(img);
         home.setIcon(icon);
     }
-
 
     public void actionPerformed(ActionEvent evt) {
         // TODO Auto-generated method stub
