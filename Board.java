@@ -57,9 +57,9 @@ public class Board extends JPanel implements ActionListener {
         for (int row = 0; row < 8; row++) {
            for (int col = 0; col < 8; col++) {
               if ( row % 2 == col % 2 )
-                 g.setColor(Colors.LIGHT_BROWN);
-              else
                  g.setColor(Colors.DARK_BROWN);
+              else
+                 g.setColor(Colors.LIGHT_BROWN);
               g.fillRect(2 + col*20, 2 + row*20, 20, 20);
               switch (checkersData[row][col]) {
               case red:
