@@ -96,8 +96,8 @@ public class GameScreen extends JFrame implements ActionListener {
 
 		board.setPreferredSize(new Dimension(164, 164));
 
-		layout.putConstraint(SpringLayout.WEST, board, 20, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, board, 200, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.WEST, board, 50, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, board, 150, SpringLayout.NORTH, this);
 
 		resign.addActionListener(this);
 		draw.addActionListener(this);
@@ -155,7 +155,6 @@ public class GameScreen extends JFrame implements ActionListener {
 			p1Color = "red";
 		}
 	}
-	
 	public void rescaleImage(String fileName, JButton button, int width, int height) {
 		ImageIcon icon = new ImageIcon(fileName);
 		Image img = icon.getImage();
@@ -170,12 +169,12 @@ public class GameScreen extends JFrame implements ActionListener {
 				if (isP1Turn) {
 					whoWins = "p2";
 					p2Wins++;
-					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins);
+					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
 				}
 				else {
 					whoWins = "p1";
 					p1Wins++;
-					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins);
+					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
 				}
 			}
 
