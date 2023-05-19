@@ -18,11 +18,11 @@ public class GameScreen extends JFrame implements ActionListener {
 	boolean isP2Turn = false;
 	String whoWins = "";
 
+	Board board = new Board();
+
 	JButton resign = new JButton("Resign");
 	JButton draw = new JButton("Draw");
 	JButton undo = new JButton("Undo");
-
-	JButton board = new JButton("Board");
 
 	JButton rules = new JButton("Rules");
 
@@ -57,6 +57,7 @@ public class GameScreen extends JFrame implements ActionListener {
 		add(game);
 		add(turn);
 		add(toPlay);
+		add(board);
 
 		rescaleImage("homeIcon.png", home, 55, 47);
 		home.setFocusPainted(false);
@@ -92,6 +93,11 @@ public class GameScreen extends JFrame implements ActionListener {
 
 		layout.putConstraint(SpringLayout.WEST, toPlay, 585, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.NORTH, toPlay, 200, SpringLayout.NORTH, this);
+
+		board.setPreferredSize(new Dimension(164, 164));
+
+		layout.putConstraint(SpringLayout.WEST, board, 20, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, board, 200, SpringLayout.NORTH, this);
 
 		resign.addActionListener(this);
 		draw.addActionListener(this);

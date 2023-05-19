@@ -116,12 +116,12 @@ public class Board extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Board board = new Board();
 		JFrame frame = new JFrame();
 		frame.add(board);
 		frame.setVisible(true);
 		frame.setSize(800, 500);
-	}
+	}*/
 }
