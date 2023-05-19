@@ -1,4 +1,8 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
+public class Board extends JPanel implements ActionListener {
     JPanel board = new JPanel();
     int[][] checkersData = new int[8][8];
     static final int empty = 0;
