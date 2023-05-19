@@ -13,38 +13,6 @@ public class Board extends JPanel implements ActionListener {
     public Board() {
 		prepareGame();
     }
-    public void paint() {
-		board.setLayout(new GridLayout(8,8));
-		for (int row = 0; row < 8; row++) {
-			for(int column = 0; column < 8; column++) {
-				JPanel panel = new JPanel();
-				if(row%2 == 0) {
-					if(column%2 == 0) {
-						panel.setBackground(Colors.LIGHT_BROWN);
-					} else {
-						panel.setBackground(Colors.DARK_BROWN);
-					}
-				} else {
-					if(column%2 == 1) {
-						panel.setBackground(Colors.LIGHT_BROWN);
-					} else {
-						panel.setBackground(Colors.DARK_BROWN);
-					}
-				}
-				if (checkersData[row][column] != empty) {
-					if (checkersData[row][column] == black) {
-						JButton button = new JButton();
-						button.setBackground(Color.black);
-					}
-					else {
-						JButton button = new JButton();
-						button.setBackground(Color.red);
-					}
-				}
-				board.add(panel);
-			}
-		}
-    }
 	public void paintComponent(Graphics g) {
         // Draw a two-pixel black border around the edges of the canvas. 
 
@@ -108,10 +76,6 @@ public class Board extends JPanel implements ActionListener {
 			System.out.println();
 		}
 	}
-	public void createPiece() {
-		
-	}
-
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
