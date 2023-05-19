@@ -34,6 +34,8 @@ public class FinalScreen extends JFrame implements ActionListener{
 	JLabel p2Score = new JLabel();
 	
 	JPanel info = new JPanel();
+
+	Board b2 = new Board();
 	
 /**
  * Creates a FinalScreen window displaying the board and a message specifying the victor
@@ -143,6 +145,10 @@ public class FinalScreen extends JFrame implements ActionListener{
         winCat.setIcon(catto);
         winCat.setBounds(575, 200, 300, 100);
         add(winCat);
+
+		b2.setBounds(250, 300, 164, 164);
+		add(b2);
+		
 		
 		setLayout(null);
 		setSize(800, 500);
@@ -179,8 +185,7 @@ public class FinalScreen extends JFrame implements ActionListener{
 
 	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		FinalScreen demo = new FinalScreen();
-		demo.setVisible(true);
-*/
+		FinalScreen demo = new FinalScreen(5, 2, 3, "name1", "name2", "p1");
+		demo.setVisible(true);*/
 
 }
