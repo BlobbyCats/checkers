@@ -89,7 +89,7 @@ public class Board extends JPanel implements ActionListener {
 	public void prepareGame() {
 		for (int row = 0; row < checkersData.length; row++) {
 			for (int column = 0; column < checkersData[row].length; column++) {
-				if (row % 2 == column % 2) {
+				if (row % 2 != column % 2) {
 					if (row < 3) {
 						checkersData[row][column] = black;
 					}
