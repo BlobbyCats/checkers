@@ -1,8 +1,11 @@
-//https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+/**
+ * @author ruthwika
+ *
+ */
 
 public class GameScreen extends JFrame implements ActionListener {
 	Font plFont = new Font("Courier", Font.BOLD, 20);

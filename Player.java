@@ -1,3 +1,7 @@
+/**
+ * @author ruthwika
+ *
+ */
 public class Player {
     private String name = "";
     private int wins = 0;
