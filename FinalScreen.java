@@ -1,4 +1,3 @@
-
 import java.awt.* ;
 import java.awt.event.*;
 import javax.imageio.ImageIO;
@@ -19,9 +18,9 @@ public class FinalScreen extends JFrame implements ActionListener{
 	private int gScore2;
 	
 	JButton home = new JButton();
-	JButton close = new JButton("exit");
-	JButton rematch = new JButton("rematch");
-	JButton reset = new JButton("reset");
+	JButton close = new JButton("Exit");
+	JButton rematch = new JButton("Rematch");
+	JButton reset = new JButton("Reset");
 
 	JLabel p1title = new JLabel();
 	JLabel p2title = new JLabel();
@@ -107,7 +106,7 @@ public class FinalScreen extends JFrame implements ActionListener{
 		home.setMargin(new Insets(0, 0, 0, 0));
 		add(home);
 		
-		close.setBounds(20, 70, 40,30);
+		close.setBounds(20, 70, 60, 30);
 		close.setMargin(new Insets(0, 0, 0, 0));
 		add(close);
 		
