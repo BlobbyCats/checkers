@@ -6,17 +6,13 @@ import javax.swing.*;
 
 public class GameScreen extends JFrame implements ActionListener {
 	Font plFont = new Font("Courier", Font.BOLD, 20);
-	static String p1 = "";
-	static String p2 = "";
-	static int gameNum = 1;
-	static int p1Wins = 0;
-	static int p2Wins = 0;
-	String p1Color = "";
-	String p2Color = "";
-	int move = 1;
-	boolean isP1Turn = false;
-	boolean isP2Turn = false;
-	String whoWins = "";
+	Player p1;
+	Player p2;
+	private static int gameNum = 1;
+	private int move = 1;
+	private boolean isP1Turn = false;
+	private boolean isP2Turn = false;
+	private String whoWins = "";
 
 	Board board = new Board();
 
@@ -41,14 +37,14 @@ public class GameScreen extends JFrame implements ActionListener {
 		setLayout(layout);
 		setSize(800, 500);
 
-		p1 = player1;
-		p2 = player2;
+		p1 = new Player(player1, player1Wins, "");
+		p2 = new Player(player2, player2Wins, "");
+
 		gameNum = gNum;
 		game = new JLabel("Game #" + gameNum);
-		p1Wins = player1Wins;
-		p2Wins = player2Wins;
-		p1title = new JLabel(p1);
-		p2title = new JLabel(p2);
+
+		p1title = new JLabel(p1.getName());
+		p2title = new JLabel(p2.getName());
 		
 		pickColors();
 		updateTurn();
@@ -105,7 +101,7 @@ public class GameScreen extends JFrame implements ActionListener {
 		layout.putConstraint(SpringLayout.WEST, board, 110, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.NORTH, board, 130, SpringLayout.NORTH, this);
 
-		if (p1Color.equals("black")) {
+		if (p1.getColor().equals("black")) {
 			layout.putConstraint(SpringLayout.WEST, p1title, 140, SpringLayout.WEST, this);
 			layout.putConstraint(SpringLayout.NORTH, p1title, 100, SpringLayout.NORTH, this);
 
@@ -142,20 +138,20 @@ public class GameScreen extends JFrame implements ActionListener {
 	public void updateTurn() {
 		if ((move % 2) == 1) {
 			toPlay = new JLabel("Black to play!");
-			if (p1Color == "black") {
-				turn = new JLabel("It is " + p1 + "\'s turn.");
+			if (p1.getColor() == "black") {
+				turn = new JLabel("It is " + p1.getName() + "\'s turn.");
 				isP1Turn = true;
 				isP2Turn = false;
 			}
 			else {
-				turn = new JLabel("It is " + p2 + "\'s turn.");
+				turn = new JLabel("It is " + p2.getName() + "\'s turn.");
 				isP2Turn = true;
 				isP1Turn = false;
 			}
 		}
 		else {
 			toPlay = new JLabel("Red to play!");
-			if (p1Color == "black") {
+			if (p1.getColor() == "black") {
 				turn = new JLabel("It is " + p2 + "\'s turn.");
 				isP2Turn = true;
 				isP1Turn = false;
@@ -170,12 +166,12 @@ public class GameScreen extends JFrame implements ActionListener {
 	public void pickColors() {
 		int rand = (int)(Math.random() * 2);
 		if (rand == 0) {
-			p1Color = "black";
-			p2Color = "red";
+			p1.setColor("black");
+			p2.setColor("red");
 		}
 		else {
-			p2Color = "black";
-			p1Color = "red";
+			p2.setColor("black");
+			p1.setColor("red");
 		}
 	}
 	public void rescaleImage(String fileName, JButton button, int width, int height) {
@@ -191,14 +187,14 @@ public class GameScreen extends JFrame implements ActionListener {
 			if (n == JOptionPane.YES_OPTION) {
 				if (isP1Turn) {
 					whoWins = "p2";
-					p2Wins++;
-					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
+					p2.incrementWins();
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
 					this.setVisible(false);
 				}
 				else {
 					whoWins = "p1";
-					p1Wins++;
-					FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
+					p1.incrementWins();
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
 					this.setVisible(false);
 				}
 			}
@@ -208,7 +204,7 @@ public class GameScreen extends JFrame implements ActionListener {
 			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want a draw?", "Message", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				whoWins = "neither";
-				FinalScreen f = new FinalScreen(gameNum, p1Wins, p2Wins, p1, p2, whoWins, p1Color, p2Color);
+				FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
 				this.setVisible(false);
 			}
 		}

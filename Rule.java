@@ -25,7 +25,7 @@ public class Rule extends JFrame implements ActionListener {// Rule class
         button.addActionListener(this);
        
         //set the home button bound/location 
-        home.setBounds(870,10,100,30);
+        home.setBounds(700,10,55,47);
         home.addActionListener(this);
    
        
@@ -34,20 +34,20 @@ public class Rule extends JFrame implements ActionListener {// Rule class
                 + "<pre> 2. Each person had 12 pieces." + " <pre> 3. Darker color goes first." +
                 "<pre> 4. Pieces are always moved diagonally" +
                 " <pre>    a. Pawns can only be moved forward - diagonally <pre>" +
-                "    b. Kings can be moved backwards <pre>"+ "5. A King can be made by moving a pawn to the opposite side of the board"
+                "    b. Kings can be moved backwards <pre>"+ " 5. A King can be made by moving a pawn to the opposite side of the board"
 
 
-                + "<pre>6. To capture the opponent pieces your pieces leaps over one of the opponent <pre> pieces and land in straight  diagonal line on the other sides"
-                + "7. If neither player has legal moves, then it is a draw <pre>"
-                + "8. You win the game when the opponent has no more pieces or cannot move"
+                + "<pre> 6. To capture the opponent pieces your pieces leaps over one of the opponent <pre> pieces and land in straight  diagonal line on the other sides"
+                + " 7. If neither player has legal moves, then it is a draw <pre>"
+                + " 8. You win the game when the opponent has no more pieces or cannot move"
                 + " </html>" );
 
 
        
-       // set the label in the center
-    label.setHorizontalAlignment(JLabel.CENTER);
+        // set the label in the center
+        label.setHorizontalAlignment(JLabel.CENTER);
 
-        setSize(1000 ,600);//set the size of the frame
+        setSize(800 ,500);//set the size of the frame
         setTitle(" Rule Page ");// the JFrame title 
         getContentPane().setBackground(Colors.LIGHT_BROWN);// change the JFrame background colors 
         add(button);// add the button
@@ -58,8 +58,9 @@ public class Rule extends JFrame implements ActionListener {// Rule class
 
 
         rescaleImage("homeIcon.png", home, 55, 47);// set the home icons 
-        home.setFocusPainted(true);
-     
+        home.setFocusPainted(false);
+        home.setBorderPainted(false);
+        home.setBackground(null);
     }
 
 // @param  fileName - the file name

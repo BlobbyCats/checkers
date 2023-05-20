@@ -2,16 +2,29 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Board extends JPanel implements ActionListener {
+public class Board extends JPanel implements MouseListener {
     JPanel board = new JPanel();
-    int[][] checkersData = new int[8][8];
+	private boolean inProgress = true;
+    private int[][] checkersData = new int[8][8];
     static final int empty = 0;
 	static final int red = 1;
 	static final int black = 2; 
 	static final int redKing = 3;
 	static final int blackKing = 4;
+
+	int fromRow = 0;
+	int fromCol = 0;
+	int toRow = 0;
+	int toCol = 0;
+
+	int selectedRow = -1;
+	int selectedCol = -1;
+
+	int currentPlayer;
     public Board() {
-		prepareGame();
+		drawBoard();
+		board.addMouseListener(this);
+		currentPlayer = black;
     }
 	public int getPiece(int row, int col) {
 		return checkersData[row][col];
@@ -57,7 +70,21 @@ public class Board extends JPanel implements ActionListener {
            }
         }
     }
-	public void prepareGame() {
+	public void move(int fromRow, int fromCol, int toRow, int toCol) {
+		checkersData[toRow][toCol] = checkersData[fromRow][fromCol];
+		checkersData[fromRow][fromCol] = empty;
+		if (fromRow - toRow == 2 || fromRow - toRow == -2) {
+			int midRow = (fromRow + toRow) / 2;
+			int midCol = (fromCol + toCol) / 2;
+			checkersData[midRow][midCol] = empty;
+		}
+		if (toRow == 0 && checkersData[toRow][toCol] == red)
+            checkersData[toRow][toCol] = redKing;
+        if (toRow == 7 && checkersData[toRow][toCol] == black)
+            checkersData[toRow][toCol] = blackKing;
+		repaint();
+	}
+	public void drawBoard() {
 		for (int row = 0; row < checkersData.length; row++) {
 			for (int column = 0; column < checkersData[row].length; column++) {
 				if (row % 2 != column % 2) {
@@ -74,21 +101,29 @@ public class Board extends JPanel implements ActionListener {
 				else {
 					checkersData[row][column] = empty;
 				}
-				System.out.print(checkersData[row][column] + " ");
 			}
-			System.out.println();
 		}
 	}
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+    public void mousePressed(MouseEvent e) {
+        int col = (e.getX() - 2) / 20;
+        int row = (e.getY() - 2) / 20;
+        if (col >= 0 && col < 8 && row >= 0 && row < 8) {
+			move(1, 0, 2, 0);
+		}
     }
-	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent e) {
+    }
+	public void mouseEntered(MouseEvent e) {
+    }
+	public void mouseReleased(MouseEvent e) {
+    }
+	public void mouseExited(MouseEvent e) {
+	}
+	public static void main(String[] args) {
 		Board board = new Board();
 		JFrame frame = new JFrame();
 		frame.add(board);
 		frame.setVisible(true);
 		frame.setSize(800, 500);
-	}*/
+	}
 }

@@ -99,7 +99,7 @@ public class HomePage extends JFrame implements ActionListener {
 		if(evt.getActionCommand().equals("start")) {
 			if (checkNames()) {
 				System.out.println("Let the game begin");
-				GameScreen gs = new GameScreen("Checkers", p1, p2, 0, 0, 0);
+				GameScreen gs = new GameScreen("Checkers", p1, p2, 1, 0, 0);
 				gs.setVisible(true);
 				this.setVisible(false);
 			}
@@ -162,14 +162,14 @@ public class HomePage extends JFrame implements ActionListener {
 				return false;
 			}
 		} else if (p2.length() >= 12) {
-			int n = JOptionPane.showConfirmDialog(this, "Player 2's name too long, so we will take the first 12 characters! "
+			int n = JOptionPane.showConfirmDialog(this, "Player 2's name is too long, so we will take the first 12 characters! "
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				p2 = p2.substring(0, 11);
 				return true;
 			} else {
 				warning1.setText("");
-				warning2.setBounds(275, 155, 350, 100);
+				warning2.setBounds(275, 255, 350, 100);
 				warning2.setText("Please enter a new name");
 				return false;
 			}
