@@ -29,8 +29,10 @@ public class Board extends JPanel implements MouseListener {
 	Player p1;
 	Player p2;
 	private int gameNum;
+
+	GameScreen game;
 	
-    public Board(String player1, String player2, int gNum, int player1Wins, int player2Wins, String p1Color, String p2Color) {
+    public Board(String player1, String player2, int gNum, int player1Wins, int player2Wins, String p1Color, String p2Color, GameScreen g) {
 		p1 = new Player(player1, player1Wins, p1Color);
 		p2 = new Player(player2, player2Wins, p2Color);
 		gameNum = gNum;
@@ -38,6 +40,7 @@ public class Board extends JPanel implements MouseListener {
 		addMouseListener(this);
 		currentPlayer = black;
 		legalMoves = getLegalMoves(currentPlayer);
+		game = g;
     }
 	public void clickSquare(int row, int col) {
 		for (int i = 0; i < legalMoves.length; i++) {
@@ -271,10 +274,9 @@ public class Board extends JPanel implements MouseListener {
 		if (currentPlayer == red) {
 			currentPlayer = black;
 			legalMoves = getLegalMoves(currentPlayer);
+			game.updateTurn();
 			if (legalMoves == null) {
-				GameScreen g = new GameScreen("Checkers!", p1.getName(), p2.getName(), gameNum, p1.getWins(), p2.getWins());
-				g.setVisible(false);
-				if (g.getP1Turn()) {
+				if (p1.getColor() == "black") {
 					String whoWins = "p2";
 					p2.incrementWins();
 					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
@@ -291,10 +293,9 @@ public class Board extends JPanel implements MouseListener {
 		else {
 			currentPlayer = red;
 			legalMoves = getLegalMoves(currentPlayer);
+			game.updateTurn();
 			if (legalMoves == null) {
-				GameScreen g = new GameScreen("Checkers!", p1.getName(), p2.getName(), gameNum, p1.getWins(), p2.getWins());
-				g.setVisible(false);
-				if (g.getP1Turn()) {
+				if (p1.getColor() == "red") {
 					String whoWins = "p2";
 					p2.incrementWins();
 					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());

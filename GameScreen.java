@@ -12,7 +12,7 @@ public class GameScreen extends JFrame implements ActionListener {
 	Player p1;
 	Player p2;
 	private static int gameNum = 1;
-	private int move = 1;
+	private int move = 0;
 	private boolean isP1Turn = false;
 	private boolean isP2Turn = false;
 	private String whoWins = "";
@@ -33,10 +33,11 @@ public class GameScreen extends JFrame implements ActionListener {
 	JLabel p1title = new JLabel();
 	JLabel p2title = new JLabel();
 
+	SpringLayout layout = new SpringLayout();
+
 	public GameScreen(String title, String player1, String player2, int gNum, int player1Wins, int player2Wins) {
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
 		setSize(800, 500);
 
@@ -52,7 +53,7 @@ public class GameScreen extends JFrame implements ActionListener {
 		pickColors();
 		updateTurn();
 
-		board = new Board(p1.getName(), p2.getName(), gameNum, p1.getWins(), p2.getWins(), p1.getColor(), p2.getColor());
+		board = new Board(p1.getName(), p2.getName(), gameNum, p1.getWins(), p2.getWins(), p1.getColor(), p2.getColor(), this);
 
 		add(resign);
 		add(draw);
@@ -141,28 +142,31 @@ public class GameScreen extends JFrame implements ActionListener {
 		p2title.setForeground(Color.WHITE);
 	}
 	public void updateTurn() {
+		move++;
 		if ((move % 2) == 1) {
-			toPlay = new JLabel("Black to play!");
-			if (p1.getColor() == "black") {
-				turn = new JLabel("It is " + p1.getName() + "\'s turn.");
+			System.out.println("p1: " + p1.getColor());
+			toPlay.setText("Black to play!");
+			if (p1.getColor().equals("black")) {
+				turn.setText("It is " + p1.getName() + "\'s turn.");
 				isP1Turn = true;
 				isP2Turn = false;
 			}
 			else {
-				turn = new JLabel("It is " + p2.getName() + "\'s turn.");
+				turn.setText("It is " + p2.getName() + "\'s turn.");
 				isP2Turn = true;
 				isP1Turn = false;
 			}
 		}
-		else {
-			toPlay = new JLabel("Red to play!");
-			if (p1.getColor() == "black") {
-				turn = new JLabel("It is " + p2 + "\'s turn.");
+		else if (move % 2 == 0) {
+			System.out.println("p1: " + p1.getColor());
+			toPlay.setText("Red to play!");
+			if (p1.getColor().equals("black")) {
+				turn.setText("It is " + p2.getName() + "\'s turn.");
 				isP2Turn = true;
 				isP1Turn = false;
 			}
 			else {
-				turn = new JLabel("It is " + p1 + "\'s turn.");
+				turn.setText("It is " + p1.getName() + "\'s turn.");
 				isP1Turn = true;
 				isP2Turn = false;
 			}
