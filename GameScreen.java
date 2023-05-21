@@ -16,6 +16,7 @@ public class GameScreen extends JFrame implements ActionListener {
 	private boolean isP1Turn = false;
 	private boolean isP2Turn = false;
 	private String whoWins = "";
+	private boolean inProgress = true;
 
 	Board board;
 
@@ -57,7 +58,6 @@ public class GameScreen extends JFrame implements ActionListener {
 
 		add(resign);
 		add(draw);
-		add(undo);
 		add(home);
 		add(rules);
 		add(game);
@@ -76,17 +76,12 @@ public class GameScreen extends JFrame implements ActionListener {
 		resign.setPreferredSize(new Dimension(250, 50));
 
 		layout.putConstraint(SpringLayout.WEST, resign, 500, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, resign, 250, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, resign, 275, SpringLayout.NORTH, this);
 
 		draw.setPreferredSize(new Dimension(250, 50));
 
 		layout.putConstraint(SpringLayout.WEST, draw, 500, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, draw, 300, SpringLayout.NORTH, this);
-
-		undo.setPreferredSize(new Dimension(250, 50));
-
-		layout.putConstraint(SpringLayout.WEST, undo, 500, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, undo, 350, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, draw, 325, SpringLayout.NORTH, this);
 
 		rules.setPreferredSize(new Dimension(150, 40));
 
@@ -144,7 +139,6 @@ public class GameScreen extends JFrame implements ActionListener {
 	public void updateTurn() {
 		move++;
 		if ((move % 2) == 1) {
-			System.out.println("p1: " + p1.getColor());
 			toPlay.setText("Black to play!");
 			if (p1.getColor().equals("black")) {
 				turn.setText("It is " + p1.getName() + "\'s turn.");
@@ -158,7 +152,6 @@ public class GameScreen extends JFrame implements ActionListener {
 			}
 		}
 		else if (move % 2 == 0) {
-			System.out.println("p1: " + p1.getColor());
 			toPlay.setText("Red to play!");
 			if (p1.getColor().equals("black")) {
 				turn.setText("It is " + p2.getName() + "\'s turn.");
@@ -197,53 +190,55 @@ public class GameScreen extends JFrame implements ActionListener {
 		button.setIcon(icon);
 	}
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("resign")) {
-			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want to resign?", "Message", JOptionPane.YES_NO_OPTION);
-			if (n == JOptionPane.YES_OPTION) {
-				if (isP1Turn) {
-					whoWins = "p2";
-					p2.incrementWins();
-					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
-					this.setVisible(false);
+		while (inProgress) {
+			if (e.getActionCommand().equals("resign")) {
+				int n = JOptionPane.showConfirmDialog(this, "Are you sure you want to resign?", "Message", JOptionPane.YES_NO_OPTION);
+				if (n == JOptionPane.YES_OPTION) {
+					if (isP1Turn) {
+						whoWins = "p2";
+						p2.incrementWins();
+						FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+						this.setVisible(false);
+					}
+					else {
+						whoWins = "p1";
+						p1.incrementWins();
+						FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+						this.setVisible(false);
+					}
 				}
-				else {
-					whoWins = "p1";
-					p1.incrementWins();
-					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
-					this.setVisible(false);
-				}
+				break;
 			}
-
-		}
-		if (e.getActionCommand().equals("draw")) {
-			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want a draw?", "Message", JOptionPane.YES_NO_OPTION);
-			if (n == JOptionPane.YES_OPTION) {
-				whoWins = "neither";
-				FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+			if (e.getActionCommand().equals("draw")) {
+				int n = JOptionPane.showConfirmDialog(this, "Are you sure you want a draw?", "Message", JOptionPane.YES_NO_OPTION);
+				if (n == JOptionPane.YES_OPTION) {
+					whoWins = "neither";
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					this.setVisible(false);
+				}
+				break;
+			}
+			if (e.getActionCommand().equals("rules")) {
+				JOptionPane.showMessageDialog(this, "<html> <pre> 1. Checkers is a board game played between 2 people on an 8x8 board. "
+				+ "<pre> 2. Each person had 12 pieces." + " <pre> 3. Darker color goes first." +
+				"<pre> 4. Pieces are always moved diagonally" +
+				" <pre>    a. Pawns can only be moved forward - diagonally <pre>" +
+				"    b. Kings can be moved backwards <pre>"+ "5. A King can be made by moving a pawn to the opposite side of the board"
+	
+	
+				+ "<pre>6. To capture the opponent pieces your pieces leaps over one of the opponent <pre> pieces and land in straight  diagonal line on the other sides"
+				+ "7. If neither player has legal moves, then it is a draw <pre>"
+				+ "8. You win the game when the opponent has no more pieces or cannot move"
+				+ " </html>", "Message", JOptionPane.OK_OPTION);
+				break;
+			}
+			if (e.getActionCommand().equals("home")) {
+				HomePage homepage = new HomePage();
 				this.setVisible(false);
+				homepage.setSize(this.getWidth(), this.getHeight());
+				homepage.setVisible(true);
+				break;
 			}
-		}
-		if (e.getActionCommand().equals("undo")) {
-			int n = JOptionPane.showConfirmDialog(this, "Are you sure you want to undo your move?", "Rules", JOptionPane.YES_NO_OPTION);
-		}
-		if (e.getActionCommand().equals("rules")) {
-			JOptionPane.showMessageDialog(this, "<html> <pre> 1. Checkers is a board game played between 2 people on an 8x8 board. "
-			+ "<pre> 2. Each person had 12 pieces." + " <pre> 3. Darker color goes first." +
-			"<pre> 4. Pieces are always moved diagonally" +
-			" <pre>    a. Pawns can only be moved forward - diagonally <pre>" +
-			"    b. Kings can be moved backwards <pre>"+ "5. A King can be made by moving a pawn to the opposite side of the board"
-
-
-			+ "<pre>6. To capture the opponent pieces your pieces leaps over one of the opponent <pre> pieces and land in straight  diagonal line on the other sides"
-			+ "7. If neither player has legal moves, then it is a draw <pre>"
-			+ "8. You win the game when the opponent has no more pieces or cannot move"
-			+ " </html>", "Message", JOptionPane.OK_OPTION);
-		}
-		if (e.getActionCommand().equals("home")) {
-			HomePage homepage = new HomePage();
-			this.setVisible(false);
-			homepage.setSize(this.getWidth(), this.getHeight());
-			homepage.setVisible(true);
 		}
 	}
 }
