@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
+<<<<<<< HEAD
  * @author ruthwika
  *
+=======
+ * Represents a checkerboard game board.
+>>>>>>> 86633a0192935ff3fb71b01a3349f7a61bd6252f
  */
 public class Board extends JPanel implements MouseListener {
     JPanel board = new JPanel();
@@ -36,6 +40,18 @@ public class Board extends JPanel implements MouseListener {
 
 	GameScreen game;
 	
+	/**
+     * Constructs a Board object with the specified players and game information.
+     *
+     * @param player1      the name of player 1
+     * @param player2      the name of player 2
+     * @param gNum         the game number
+     * @param player1Wins  the number of wins for player 1
+     * @param player2Wins  the number of wins for player 2
+     * @param p1Color      the color of player 1's pieces
+     * @param p2Color      the color of player 2's pieces
+     * @param g            the GameScreen object
+     */
     public Board(String player1, String player2, int gNum, int player1Wins, int player2Wins, String p1Color, String p2Color, GameScreen g) {
 		p1 = new Player(player1, player1Wins, p1Color);
 		p2 = new Player(player2, player2Wins, p2Color);
@@ -46,6 +62,13 @@ public class Board extends JPanel implements MouseListener {
 		legalMoves = getLegalMoves(currentPlayer);
 		game = g;
     }
+	/**
+     * Updates the GUI in handling the click on a square on the board.
+     *
+     * @param row    the row of the clicked square
+     * @param col    the column of the clicked square
+     * @param index  the index of the legal move
+     */
 	public void clickSquare(int row, int col, int index) {
 		if (index < legalMoves.length && legalMoves[index].getFromRow() == row && legalMoves[index].getFromCol() == col) {
 			selectedRow = row;
@@ -60,9 +83,36 @@ public class Board extends JPanel implements MouseListener {
                 move(legalMoves[i]);
             }
 	}
+	/**
+     * Returns the piece at the specified position on the board.
+     *
+     * @param row  the row of the position
+     * @param col  the column of the position
+     * @return the piece at the specified position
+     */
 	public int getPiece(int row, int col) {
 		return checkersData[row][col];
 	}
+
+    /**
+     * Sets a piece at the specified position on the board.
+     *
+     * @param row     the row of the position
+     * @param col     the column of the position
+     * @param piece   the piece to be set
+     */
+    public void setPiece(int row, int col, int piece) {
+        checkersData[row][col] = piece;
+    }
+
+	/**
+     * Gets an array of all legal jumps for the current player.
+     *
+     * @param player  the current player
+	 * @param row     the row of the position
+     * @param col     the column of the position
+     * @return an array of legal jumps for the current player
+     */
 	public Move[] getLegalJumpsFrom(int player, int row, int col) {
 		if (player != red && player != black)
 		   return null;
@@ -91,6 +141,13 @@ public class Board extends JPanel implements MouseListener {
 		   return moveArray;
 		}
 	}
+
+	/**
+     * Gets an array of all legal moves for the current player.
+     *
+     * @param player  the current player
+     * @return an array of legal moves for the current player
+     */
 	public Move[] getLegalMoves(int player) {
 		ArrayList<Move> moves = new ArrayList<Move>();
 		int playerKing;
@@ -148,6 +205,17 @@ public class Board extends JPanel implements MouseListener {
 			return moves2;
 		}
 	}
+
+	/**
+     * Checks if a jump is possible for a player's piece.
+     *
+     * @param player the current player
+     * @param fromRow the original row of the piece
+     * @param fromCol  the original column of the piece
+     * @param toRow the row of the piece being moved to
+     * @param toCol the column of the piece being moved to
+     * @return true if the move is possible, false otherwise
+     */
 	public boolean canMove(int player, int fromRow, int fromCol, int toRow, int toCol) {
 		if (toRow < 0 || toRow >= 8 || toCol < 0 || toCol >= 8) {
 			return false;
@@ -168,6 +236,19 @@ public class Board extends JPanel implements MouseListener {
 			return true;
 		}
 	}
+
+	/**
+     * Checks if a jump is possible for a player's piece.
+     *
+     * @param player     the current player
+     * @param r1         the row of the piece
+     * @param c1         the column of the piece
+     * @param r2         the row of the piece being jumped
+     * @param c2         the column of the piece being jumped
+     * @param r3         the row of the destination position after the jump
+     * @param c3         the column of the destination position after the jump
+     * @return true if the jump is possible, false otherwise
+     */
 	public boolean canJump(int player, int r1, int c1, int r2, int c2, int r3, int c3) {
          
 		if (r3 < 0 || r3 >= 8 || c3 < 0 || c3 >= 8)
@@ -192,6 +273,12 @@ public class Board extends JPanel implements MouseListener {
 		}
 		
 	 }
+
+	/**
+ 	* This method is responsible for painting the checkerboard and checkers on the canvas.
+ 	*
+ 	* @param g the Graphics object used for painting
+ 	*/
 	public void paintComponent(Graphics g) {
         // Draw a two-pixel black border around the edges of the canvas. 
 
@@ -254,6 +341,12 @@ public class Board extends JPanel implements MouseListener {
 		 }
 	  }
     }
+
+	/**
+	* Moves a checker piece based on the provided move.
+ 	*
+ 	* @param m the Move object representing the move to be made
+ 	*/
 	public void move(Move m) {
 		checkersData[m.getToRow()][m.getToCol()] = checkersData[m.getFromRow()][m.getFromCol()];
 		checkersData[m.getFromRow()][m.getFromCol()] = empty;
@@ -332,6 +425,9 @@ public class Board extends JPanel implements MouseListener {
 		
 		repaint();
 	}
+	/**
+	 * Method that sets the initial board up
+	 */
 	public void drawBoard() {
 		for (int row = 0; row < checkersData.length; row++) {
 			for (int column = 0; column < checkersData[row].length; column++) {
@@ -352,6 +448,10 @@ public class Board extends JPanel implements MouseListener {
 			}
 		}
 	}
+	/**
+	 * GUI handler that Handles the mouseEvent and updates the board
+	 * @param e
+	 */
     public void mousePressed(MouseEvent e) {
 		if (inProgress) {
 			int col = (e.getX() - 2) / 32;
@@ -361,15 +461,44 @@ public class Board extends JPanel implements MouseListener {
 			}
 		}
     }
+	/**
+ 	* Invoked when the mouse is clicked on the component.
+	*
+	* @param e the MouseEvent representing the mouse click event
+ 	*/
 	public void mouseClicked(MouseEvent e) {
+		// intentionally left blank
     }
+
+	/**
+ 	* Invoked when the mouse enters the component.
+ 	*
+ 	* @param e the MouseEvent representing the mouse enter event
+ 	*/
 	public void mouseEntered(MouseEvent e) {
+		// intentionally left blank
     }
+
+	/**
+ 	* Invoked when the mouse is released on the component.
+	*
+	* @param e the MouseEvent representing the mouse release event
+ 	*/
 	public void mouseReleased(MouseEvent e) {
+		// intentionally left blank
     }
+
+	/**
+ 	* Invoked when the mouse exits the component.
+	*
+	 * @param e the MouseEvent representing the mouse exit event
+ 	*/
 	public void mouseExited(MouseEvent e) {
+		// intentionally left blank
 	}
-	/*public static void main(String[] args) {
+	/*
+	Testing Board
+	public static void main(String[] args) {
 		Board board = new Board();
 		JFrame frame = new JFrame();
 		frame.add(board);

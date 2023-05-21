@@ -185,7 +185,6 @@ public class FinalScreen extends JFrame implements ActionListener{
 			System.exit(0);
 		}
 		if (evt.getActionCommand().equals("rematch")) {
-			//new game screen created, new game
 			gameN++;
             GameScreen g1 = new GameScreen("checkers", p1.getName(), 
             p2.getName() , gameN, p1.getWins(), p2.getWins()); 
