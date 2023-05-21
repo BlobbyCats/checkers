@@ -7,45 +7,59 @@ public class Player {
     private int wins = 0;
     private String color = "";
 
-    /*
-     * @param n - name of the player 
-     * @param w - number of win
-     * @param c - color 
+    /**
+     * Constructor that fills in the instance variables with the designated arguments
+     * @param n - name of the player
+     * @param w - number of wins the player has
+     * @param c - the color of the pieces for the player
      */
     public Player(String n, int w, String c) {
         name = n;
         wins = w;
         color = c;
     }
-    // return the player name
+    /**
+     * Returns the player's name
+     * @return name - the name of the player
+     */
     public String getName() {
         return name;
     }
-    // return the numbers of win
+    /**
+     * Returns the player's wins
+     * @return wins - number of wins the player has
+     */
     public int getWins() {
         return wins;
     }
 
-    // return the color 
+    /**
+     * Returns the player's color
+     * @return color - the color of the pieces for the player
+     */
     public String getColor() {
         return color;
     }
 
-    /*
-     * @param w - number of win
-     * set the number of win to w
+    /**
+     * Sets the number of wins to w
+     * @param w - the number of wins
      */
     public void setWins(int w) {
         wins = w;
     }
-    /*
-     * @param c - color 
-     * set the color to c
+    
+    /**
+     * Sets the color of the player's pieces to c
+     * @param c - the color of the pieces for the player
      */
     public void setColor(String c) {
         color = c;
     }
-    // increase number of win by 1 
+    
+    /**
+     * Increments the number of wins by 1
+     */
     public void incrementWins() {
         wins++;
     }

@@ -171,7 +171,10 @@ public class FinalScreen extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-
+	/**
+	 * Switches to the home page when the home button or reset button is clicked, game page when the rematch button is clicked, and exits the program if the exit button is clicked
+	 * @param evt - ActionEvent that occurs when a user clicks on a JButton
+	 */
 	public void actionPerformed(ActionEvent evt) {
 		if (evt.getActionCommand().equals("home") || 
             evt.getActionCommand().equals("reset")) {
@@ -185,7 +188,6 @@ public class FinalScreen extends JFrame implements ActionListener{
 			System.exit(0);
 		}
 		if (evt.getActionCommand().equals("rematch")) {
-			//new game screen created, new game
 			gameN++;
             GameScreen g1 = new GameScreen("checkers", p1.getName(), 
             p2.getName() , gameN, p1.getWins(), p2.getWins()); 
@@ -194,10 +196,4 @@ public class FinalScreen extends JFrame implements ActionListener{
 
 		}
 	}
-
-	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		FinalScreen demo = new FinalScreen(5, 2, 3, "name1", "name2", "p1");
-		demo.setVisible(true);*/
-
 }

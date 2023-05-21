@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
+<<<<<<< HEAD
+ * @author ruthwika
+ *
+=======
  * Represents a checkerboard game board.
+>>>>>>> 86633a0192935ff3fb71b01a3349f7a61bd6252f
  */
 public class Board extends JPanel implements MouseListener {
     JPanel board = new JPanel();

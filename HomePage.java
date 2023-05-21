@@ -25,6 +25,9 @@ public class HomePage extends JFrame implements ActionListener {
 	String p1; // Stores player 1's name
 	String p2; // Stores player 2's name
 	
+	/**
+	 * Constructor that places the GUI components on the frame
+	 */
 	public HomePage() {
 		// Sets the title of the JFrame Checkers
 		super("Checkers");
@@ -107,7 +110,10 @@ public class HomePage extends JFrame implements ActionListener {
 	    
 	    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
-	
+	/**
+	 * Switches to the rules page when the rules button is clicked, game page when the start button is clicked, and checks the input of the usernames
+	 * @param evt - ActionEvent that occurs when a user clicks on a JButton
+	 */
 	public void actionPerformed(ActionEvent evt) {
 		if(evt.getActionCommand().equals("start")) {
 			if (checkNames()) {
@@ -134,7 +140,10 @@ public class HomePage extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 	}
-	
+	/**
+	 * Checks whether the usernames are not too long, are different, and makes sure that no field is left blank
+	 * @return boolean which describes whether the names are valid or not
+	 */
 	public boolean checkNames() {
 		// Takes the user input from the text fields
 		p1 = pl1.getText();
@@ -172,8 +181,8 @@ public class HomePage extends JFrame implements ActionListener {
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				// takes the users first 12 characters 
-				p1 = p1.substring(0, 11);
-				p2 = p2.substring(0, 11);
+				p1 = p1.substring(0, 12);
+				p2 = p2.substring(0, 12);
 				return true;
 			} else {
 				// if no, user must input a new name
@@ -191,7 +200,7 @@ public class HomePage extends JFrame implements ActionListener {
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				// takes the player 1's first 12 characters of their name
-				p1 = p1.substring(0, 11);
+				p1 = p1.substring(0, 12);
 				return true;
 			} else {
 				// if no, user must input a new name
@@ -208,7 +217,7 @@ public class HomePage extends JFrame implements ActionListener {
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				// takes the player 2's first 12 characters of their name
-				p2 = p2.substring(0, 11);
+				p2 = p2.substring(0, 12);
 				return true;
 			} else {
 				// if no, user must input a new name
