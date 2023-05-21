@@ -171,7 +171,10 @@ public class FinalScreen extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-
+	/**
+	 * Switches to the home page when the home button or reset button is clicked, game page when the rematch button is clicked, and exits the program if the exit button is clicked
+	 * @param evt - ActionEvent that occurs when a user clicks on a JButton
+	 */
 	public void actionPerformed(ActionEvent evt) {
 		if (evt.getActionCommand().equals("home") || 
             evt.getActionCommand().equals("reset")) {

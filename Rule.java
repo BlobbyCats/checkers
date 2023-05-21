@@ -13,9 +13,11 @@ public class Rule extends JFrame implements ActionListener {// Rule class
     JLabel label= new JLabel();// display text of rule 
 
 
-
-   // @param p1Name - player 1 name 
-   // @param p2Name - player 2 name 
+    /**
+     * Constructor that instantiates the instance variables and sets the GUI of the page
+     * @param p1Name - player 1 name 
+     * @param p2Name - player 2 name 
+     */
     public Rule(String p1Name, String p2Name) {
         p1 = p1Name;
         p2 = p2Name;
@@ -65,10 +67,13 @@ public class Rule extends JFrame implements ActionListener {// Rule class
      
     }
 
-// @param  fileName - the file name
-// @param  button - the button 
-// @param  width - the width of the icon that we want to change 
-// @param  height - the height of the icon that we want to change
+    /**
+	 * Rescales the image inputted to fit the icon on a button
+	 * @param fileName - string that includes the filename of the image
+	 * @param button - JButton that the image is supposed to fit
+	 * @param width - int that determines the width of the image
+	 * @param height - int that determines the height of the image
+	 */
     public void rescaleImage(String fileName, JButton button, int width, int height) {
         ImageIcon icon = new ImageIcon(fileName);
         Image img = icon.getImage();
@@ -77,14 +82,16 @@ public class Rule extends JFrame implements ActionListener {// Rule class
         homeButton.setIcon(icon);
     }
 
-// set the action performed when we click the button 
+    /**
+	 * Switches to the home page when the home button is clicked and game page when the start button is clicked
+	 * @param evt - ActionEvent that occurs when a user clicks on a JButton
+	 */
     public void actionPerformed(ActionEvent evt) {
            // if the button is Start Game take the user to the game screen 
-if(evt.getActionCommand().equals("Start Game")) {
-	GameScreen g= new GameScreen("Checkers!", p1, p2, 0, 0, 0);
-        // set the game screen visible 
-        g.setVisible(true);
-    
+        if(evt.getActionCommand().equals("Start Game")) {
+	        GameScreen g= new GameScreen("Checkers!", p1, p2, 0, 0, 0);
+            // set the game screen visible 
+            g.setVisible(true);
         }
         else {
            // take the user back to the home pages 
@@ -94,8 +101,8 @@ if(evt.getActionCommand().equals("Start Game")) {
            
            
         }
-// make the Rule jFrame invisible 
-      setVisible(false);
+        // make the Rule jFrame invisible 
+        setVisible(false);
            
         }
        
