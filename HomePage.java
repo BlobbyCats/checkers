@@ -181,8 +181,8 @@ public class HomePage extends JFrame implements ActionListener {
 					+ "\n" + "Would you like to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				// takes the users first 12 characters 
-				p1 = p1.substring(0, 11);
-				p2 = p2.substring(0, 11);
+				p1 = p1.substring(0, 12);
+				p2 = p2.substring(0, 12);
 				return true;
 			} else {
 				// if no, user must input a new name
