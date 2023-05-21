@@ -17,7 +17,7 @@ public class GameScreen extends JFrame implements ActionListener {
 	private boolean isP2Turn = false;
 	private String whoWins = "";
 
-	Board board = new Board();
+	Board board;
 
 	JButton resign = new JButton("Resign");
 	JButton draw = new JButton("Draw");
@@ -48,9 +48,11 @@ public class GameScreen extends JFrame implements ActionListener {
 
 		p1title = new JLabel(p1.getName());
 		p2title = new JLabel(p2.getName());
-		
+
 		pickColors();
 		updateTurn();
+
+		board = new Board(p1.getName(), p2.getName(), gameNum, p1.getWins(), p2.getWins(), p1.getColor(), p2.getColor());
 
 		add(resign);
 		add(draw);
@@ -176,6 +178,12 @@ public class GameScreen extends JFrame implements ActionListener {
 			p2.setColor("black");
 			p1.setColor("red");
 		}
+	}
+	public boolean getP1Turn() {
+		return isP1Turn;
+	}
+	public boolean getP2Turn() {
+		return isP2Turn;
 	}
 	public void rescaleImage(String fileName, JButton button, int width, int height) {
 		ImageIcon icon = new ImageIcon(fileName);

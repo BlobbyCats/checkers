@@ -9,6 +9,9 @@ public class Move {
         this.toRow = toRow;
         this.toCol = toCol;
     }
+    public boolean isJump() {
+		return (fromRow - toRow == 2 || fromRow - toRow == -2);
+ 	}
     public int getFromRow() {
         return fromRow;
     }

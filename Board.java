@@ -25,27 +25,63 @@ public class Board extends JPanel implements MouseListener {
 	private int currentPlayer;
 
 	private Move[] legalMoves;
+
+	Player p1;
+	Player p2;
+	private int gameNum;
 	
-    public Board() {
+    public Board(String player1, String player2, int gNum, int player1Wins, int player2Wins, String p1Color, String p2Color) {
+		p1 = new Player(player1, player1Wins, p1Color);
+		p2 = new Player(player2, player2Wins, p2Color);
+		gameNum = gNum;
 		drawBoard();
-		board.addMouseListener(this);
+		addMouseListener(this);
 		currentPlayer = black;
+		legalMoves = getLegalMoves(currentPlayer);
     }
 	public void clickSquare(int row, int col) {
 		for (int i = 0; i < legalMoves.length; i++) {
             if (legalMoves[i].getFromRow() == row && legalMoves[i].getFromCol() == col) {
-               selectedRow = row;
-               selectedCol = col;
-               repaint();
+            	selectedRow = row;
+                selectedCol = col;
+                repaint();
             }
 		}
 		for (int i = 0; i < legalMoves.length; i++)
             if (legalMoves[i].getFromRow() == selectedRow && legalMoves[i].getFromCol() == selectedCol && legalMoves[i].getToRow() == row && legalMoves[i].getToCol() == col) {
-               move(legalMoves[i]);
+                move(legalMoves[i]);
             }
 	}
 	public int getPiece(int row, int col) {
 		return checkersData[row][col];
+	}
+	public Move[] getLegalJumpsFrom(int player, int row, int col) {
+		if (player != red && player != black)
+		   return null;
+		int playerKing;
+		if (player == red)
+		   playerKing = redKing;
+		else
+		   playerKing = blackKing;
+		ArrayList<Move> moves = new ArrayList<Move>(); 
+		if (checkersData[row][col] == player || checkersData[row][col] == playerKing) {
+		   if (canJump(player, row, col, row+1, col+1, row+2, col+2))
+			  moves.add(new Move(row, col, row+2, col+2));
+		   if (canJump(player, row, col, row-1, col+1, row-2, col+2))
+			  moves.add(new Move(row, col, row-2, col+2));
+		   if (canJump(player, row, col, row+1, col-1, row+2, col-2))
+			  moves.add(new Move(row, col, row+2, col-2));
+		   if (canJump(player, row, col, row-1, col-1, row-2, col-2))
+			  moves.add(new Move(row, col, row-2, col-2));
+		}
+		if (moves.size() == 0)
+		   return null;
+		else {
+			Move[] moveArray = new Move[moves.size()];
+		   for (int i = 0; i < moves.size(); i++)
+			  moveArray[i] = moves.get(i);
+		   return moveArray;
+		}
 	}
 	public Move[] getLegalMoves(int player) {
 		ArrayList<Move> moves = new ArrayList<Move>();
@@ -56,25 +92,41 @@ public class Board extends JPanel implements MouseListener {
 		else {
 			playerKing = blackKing;
 		}
-
-		for (int row = 0; row < checkersData.length; row++) {
-			for (int col = 0; col < checkersData[row].length; col++) {
-				if (checkersData[row][col] == player || checkersData[row][col] == playerKing) {
-					if (canMove(player, row, col, row + 1, col + 1)) {
-						moves.add(new Move(row, col, row + 1, col + 1));
-					}
-					if (canMove(player, row, col, row - 1, col + 1)) {
-						moves.add(new Move(row, col, row - 1, col + 1));
-					}
-					if (canMove(player, row, col, row + 1, col - 1)) {
-						moves.add(new Move(row, col, row + 1, col - 1));
-					}
-					if (canMove(player, row, col, row - 1, col - 1)) {
-						moves.add(new Move(row, col, row - 1, col - 1));
+		for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+               if (checkersData[row][col] == player || checkersData[row][col] == playerKing) {
+                  if (canJump(player, row, col, row+1, col+1, row+2, col+2))
+                     moves.add(new Move(row, col, row+2, col+2));
+                  if (canJump(player, row, col, row-1, col+1, row-2, col+2))
+                     moves.add(new Move(row, col, row-2, col+2));
+                  if (canJump(player, row, col, row+1, col-1, row+2, col-2))
+                     moves.add(new Move(row, col, row+2, col-2));
+                  if (canJump(player, row, col, row-1, col-1, row-2, col-2))
+                     moves.add(new Move(row, col, row-2, col-2));
+               }
+            }
+        }
+		if (moves.size() == 0) {
+			for (int row = 0; row < 8; row++) {
+				for (int col = 0; col < 8; col++) {
+					if (checkersData[row][col] == player || checkersData[row][col] == playerKing) {
+						if (canMove(player, row, col, row + 1, col + 1)) {
+							moves.add(new Move(row, col, row + 1, col + 1));
+						}
+						if (canMove(player, row, col, row - 1, col + 1)) {
+							moves.add(new Move(row, col, row - 1, col + 1));
+						}
+						if (canMove(player, row, col, row + 1, col - 1)) {
+							moves.add(new Move(row, col, row + 1, col - 1));
+						}
+						if (canMove(player, row, col, row - 1, col - 1)) {
+							moves.add(new Move(row, col, row - 1, col - 1));
+						}
 					}
 				}
 			}
 		}
+		
 		if (moves.size() == 0) {
 			return null;
 		}
@@ -89,7 +141,10 @@ public class Board extends JPanel implements MouseListener {
 		}
 	}
 	public boolean canMove(int player, int fromRow, int fromCol, int toRow, int toCol) {
-		if (toRow < 0 || toRow > 8 || toCol < 0 || toCol > 8 || checkersData[toRow][toCol] != empty) {
+		if (toRow < 0 || toRow >= 8 || toCol < 0 || toCol >= 8) {
+			return false;
+		}
+		if (checkersData[toRow][toCol] != empty) {
 			return false;
 		}
 		if (player == red) {
@@ -105,6 +160,30 @@ public class Board extends JPanel implements MouseListener {
 			return true;
 		}
 	}
+	public boolean canJump(int player, int r1, int c1, int r2, int c2, int r3, int c3) {
+         
+		if (r3 < 0 || r3 >= 8 || c3 < 0 || c3 >= 8)
+		   return false;
+		
+		if (checkersData[r3][c3] != empty)
+		   return false;
+		
+		if (player == red) {
+		   if (checkersData[r1][c1] == red && r3 > r1)
+			  return false;
+		   if (checkersData[r2][c2] != black && checkersData[r2][c2] != blackKing)
+			  return false;
+		   return true;
+		}
+		else {
+		   if (checkersData[r1][c1] == black && r3 < r1)
+			  return false; 
+		   if (checkersData[r2][c2] != red && checkersData[r2][c2] != redKing)
+			  return false;
+		   return true;
+		}
+		
+	 }
 	public void paintComponent(Graphics g) {
         // Draw a two-pixel black border around the edges of the canvas. 
 
@@ -145,6 +224,27 @@ public class Board extends JPanel implements MouseListener {
               }
            }
         }
+
+		if (inProgress) {
+		 	g.setColor(Color.cyan);
+		 	for (int i = 0; i < legalMoves.length; i++) {
+				g.drawRect(2 + legalMoves[i].getFromCol()*32, 2 + legalMoves[i].getFromRow()*32, 32, 32);
+				g.drawRect(2 + legalMoves[i].getFromCol()*32, 2 + legalMoves[i].getFromRow()*32, 32, 32);
+		 	}
+
+		if (selectedRow >= 0) {
+			g.setColor(Color.white);
+			g.drawRect(2 + selectedCol*32, 2 + selectedRow*32, 32, 32);
+			g.drawRect(2 + selectedCol*32, 2 + selectedRow*32, 32, 32);
+			g.setColor(Color.green);
+			for (int i = 0; i < legalMoves.length; i++) {
+			   if (legalMoves[i].getFromCol() == selectedCol && legalMoves[i].getFromRow() == selectedRow) {
+					g.drawRect(2 + legalMoves[i].getToCol()*32, 2 + legalMoves[i].getToRow()*32, 32, 32);
+				  	g.drawRect(2 + legalMoves[i].getToCol()*32, 2 + legalMoves[i].getToRow()*32, 32, 32);
+			   }
+			}
+		 }
+	  }
     }
 	public void move(Move m) {
 		checkersData[m.getToRow()][m.getToCol()] = checkersData[m.getFromRow()][m.getFromCol()];
@@ -158,6 +258,72 @@ public class Board extends JPanel implements MouseListener {
             checkersData[m.getToRow()][m.getToCol()] = redKing;
         if (m.getToRow() == 7 && checkersData[m.getToRow()][m.getToCol()] == black)
             checkersData[m.getToRow()][m.getToCol()] = blackKing;
+		
+		if (m.isJump()) {
+			legalMoves = getLegalJumpsFrom(currentPlayer,m.getToRow(),m.getToCol());
+			if (legalMoves != null) {
+				selectedRow = m.getToRow();  // Since only one piece can be moved, select it.
+				selectedCol = m.getToCol();
+				repaint();
+			}
+		}
+
+		if (currentPlayer == red) {
+			currentPlayer = black;
+			legalMoves = getLegalMoves(currentPlayer);
+			if (legalMoves == null) {
+				GameScreen g = new GameScreen("Checkers!", p1.getName(), p2.getName(), gameNum, p1.getWins(), p2.getWins());
+				g.setVisible(false);
+				if (g.getP1Turn()) {
+					String whoWins = "p2";
+					p2.incrementWins();
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					this.setVisible(false);
+				}
+				else {
+					String whoWins = "p1";
+					p1.incrementWins();
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					this.setVisible(false);
+				}
+			}
+		}
+		else {
+			currentPlayer = red;
+			legalMoves = getLegalMoves(currentPlayer);
+			if (legalMoves == null) {
+				GameScreen g = new GameScreen("Checkers!", p1.getName(), p2.getName(), gameNum, p1.getWins(), p2.getWins());
+				g.setVisible(false);
+				if (g.getP1Turn()) {
+					String whoWins = "p2";
+					p2.incrementWins();
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					this.setVisible(false);
+				}
+				else {
+					String whoWins = "p1";
+					p1.incrementWins();
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					this.setVisible(false);
+				}
+			}
+		}
+			 
+		selectedRow = -1;
+			 
+		if (legalMoves != null) {
+			boolean sameStartSquare = true;
+			for (int i = 1; i < legalMoves.length; i++)
+			   if (legalMoves[i].getFromRow() != legalMoves[0].getFromRow() || legalMoves[i].getFromCol() != legalMoves[0].getFromCol()) {
+					sameStartSquare = false;
+					break;
+				}
+				if (sameStartSquare) {
+				   selectedRow = legalMoves[0].getFromRow();
+				   selectedCol = legalMoves[0].getFromCol();
+				}
+		}
+		
 		repaint();
 	}
 	public void drawBoard() {
@@ -181,10 +347,10 @@ public class Board extends JPanel implements MouseListener {
 		}
 	}
     public void mousePressed(MouseEvent e) {
-        int col = (e.getX() - 2) / 20;
-        int row = (e.getY() - 2) / 20;
+        int col = (e.getX() - 2) / 32;
+        int row = (e.getY() - 2) / 32;
         if (col >= 0 && col < 8 && row >= 0 && row < 8) {
-			// fix later :(
+			clickSquare(row, col);
 		}
     }
 	public void mouseClicked(MouseEvent e) {
@@ -195,11 +361,11 @@ public class Board extends JPanel implements MouseListener {
     }
 	public void mouseExited(MouseEvent e) {
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Board board = new Board();
 		JFrame frame = new JFrame();
 		frame.add(board);
 		frame.setVisible(true);
 		frame.setSize(800, 500);
-	}
+	}*/
 }

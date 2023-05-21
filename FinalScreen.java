@@ -34,7 +34,7 @@ public class FinalScreen extends JFrame implements ActionListener{
 	JLabel p1Score = new JLabel();
 	JLabel p2Score = new JLabel();
 
-	Board b2 = new Board();
+	Board b2;
 	
 /**
  * Creates a FinalScreen window displaying the board and a message specifying the victor
@@ -49,8 +49,9 @@ public class FinalScreen extends JFrame implements ActionListener{
  */
 	public FinalScreen(int gNum, int score1, int score2, String n1, String n2, String whoWins, String p1Color, String p2Color) {
 		gameN = gNum; 
-		p1 = new Player(n1, score1, p1Color );
+		p1 = new Player(n1, score1, p1Color);
 		p2 = new Player(n2, score2, p2Color);
+		b2 = new Board(p1.getName(), p2.getName(), gameN, p1.getWins(), p2.getWins(), p1.getColor(), p2.getColor());
 		p1title.setText(n1);
 		p1title.setForeground(Color.white);
 		p2title.setText(n2);
