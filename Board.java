@@ -42,13 +42,14 @@ public class Board extends JPanel implements MouseListener {
 		legalMoves = getLegalMoves(currentPlayer);
 		game = g;
     }
-	public void clickSquare(int row, int col) {
-		for (int i = 0; i < legalMoves.length; i++) {
-            if (legalMoves[i].getFromRow() == row && legalMoves[i].getFromCol() == col) {
-            	selectedRow = row;
-                selectedCol = col;
-                repaint();
-            }
+	public void clickSquare(int row, int col, int index) {
+		if (index < legalMoves.length && legalMoves[index].getFromRow() == row && legalMoves[index].getFromCol() == col) {
+			selectedRow = row;
+            selectedCol = col;
+            repaint();
+		}
+		else if (index+1 != legalMoves.length) {
+			clickSquare(row, col, index + 1);
 		}
 		for (int i = 0; i < legalMoves.length; i++)
             if (legalMoves[i].getFromRow() == selectedRow && legalMoves[i].getFromCol() == selectedCol && legalMoves[i].getToRow() == row && legalMoves[i].getToCol() == col) {
@@ -348,10 +349,12 @@ public class Board extends JPanel implements MouseListener {
 		}
 	}
     public void mousePressed(MouseEvent e) {
-        int col = (e.getX() - 2) / 32;
-        int row = (e.getY() - 2) / 32;
-        if (col >= 0 && col < 8 && row >= 0 && row < 8) {
-			clickSquare(row, col);
+		if (inProgress) {
+			int col = (e.getX() - 2) / 32;
+        	int row = (e.getY() - 2) / 32;
+        	if (col >= 0 && col < 8 && row >= 0 && row < 8) {
+				clickSquare(row, col, 0);
+			}
 		}
     }
 	public void mouseClicked(MouseEvent e) {
