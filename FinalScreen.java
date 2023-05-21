@@ -58,17 +58,17 @@ public class FinalScreen extends JFrame implements ActionListener{
 		p2title.setForeground(Color.white);
 
 		if (p1.getColor().equals("black")) {
-			p1title.setBounds(150, 95, 50, 20);
+			p1title.setBounds(150, 95, 100, 20);
 			add(p1title);
 
-			p2title.setBounds(150, 400, 50, 20);
+			p2title.setBounds(150, 400, 100, 20);
 			add(p2title);
 		}
 		else {
-			p2title.setBounds(150, 95, 50, 20);
+			p2title.setBounds(150, 95, 100, 20);
 			add(p2title);
 
-			p1title.setBounds(150, 400, 50, 20);
+			p1title.setBounds(150, 400, 100, 20);
 			add(p1title);
 		}
 		
@@ -98,21 +98,21 @@ public class FinalScreen extends JFrame implements ActionListener{
 		close.setMargin(new Insets(0, 0, 0, 0));
 		add(close);
 		
-		rematch.setBounds(580, 310, 160, 50);
+		rematch.setBounds(540, 310, 160, 50);
 		rematch.setMargin(new Insets(0, 0, 0, 0));
 		add(rematch);
 		
-		reset.setBounds(580, 380, 160, 50);
+		reset.setBounds(540, 380, 160, 50);
 		reset.setMargin(new Insets(0, 0, 0, 0));
 		add(reset);
 
 		gameNum.setText("Game #" + gameN);
 		gameNum.setForeground(Color.white);
-        gameNum.setBounds(635, 20, 160, 50);
+        gameNum.setBounds(590, 20, 160, 50);
         add(gameNum);
 		score.setText("Scoreboard:");
 		score.setForeground(Color.white);
-        score.setBounds(625, 70, 160, 50);
+        score.setBounds(580, 70, 160, 50);
         add(score);
 
 		if (whoWins == "p1") {
@@ -121,46 +121,44 @@ public class FinalScreen extends JFrame implements ActionListener{
 			ImageIcon catto = new ImageIcon("partycatcropped.gif");
         	JLabel winCat = new JLabel();
         	winCat.setIcon(catto);
-        	winCat.setBounds(575, 200, 300, 100);
+        	winCat.setBounds(525, 190, 300, 100);
         	add(winCat);
 		}
 		else if (whoWins == "p2") {
 			message.setText("Congratulations, " + p2.getName() + "! You win!");
 			JLabel winCat2 = new JLabel();
-			winCat2.setIcon(new ImageIcon("catk.gif"));
-			winCat2.setBounds(575, 200, 300, 90);
+			winCat2.setIcon(new ImageIcon("catk2.gif"));
+			winCat2.setBounds(500, 190, 300, 110);
 			add(winCat2);
 		}
 		else {
 			message.setText("No one wins!");
+			JLabel tie = new JLabel();
+			tie.setIcon(new ImageIcon("tiecat2.gif"));
+			tie.setBounds(500, 190, 300, 110);
+			add(tie);
 		}
 		message.setForeground(Color.white);
-		message.setBounds(550, 160, 500, 50);
+		message.setBounds(520, 150, 500, 50);
 		add(message);
 
 		p2Name.setText("p2: " + p2.getName()); 
 		p2Name.setForeground(Color.white);
-        p2Name.setBounds(700, 100, 100, 50);
+        p2Name.setBounds(630, 100, 100, 50);
         add(p2Name);
 		p1Name.setText("p1: " + p1.getName()); 
 		p1Name.setForeground(Color.white);
-        p1Name.setBounds(600, 100, 100, 50);
+        p1Name.setBounds(520, 100, 100, 50);
         add(p1Name);
 		
 		p1Score.setText("" + p1.getWins());
-        p1Score.setBounds(600, 120, 200, 50);
+        p1Score.setBounds(520, 120, 200, 50);
 		p1Score.setForeground(Color.white);
         add(p1Score);
 		p2Score.setText("" + p2.getWins());
 		p2Score.setForeground(Color.white);
-        p2Score.setBounds(700, 120, 200, 50);
+        p2Score.setBounds(630, 120, 200, 50);
         add(p2Score);
-
-        /*ImageIcon catto = new ImageIcon("partycatcropped.gif");
-        JLabel winCat = new JLabel();
-        winCat.setIcon(catto);
-        winCat.setBounds(575, 200, 300, 100);
-        add(winCat);*/
 
 		b2.setBounds(110, 130, 260, 260);
 		add(b2);
