@@ -1,6 +1,6 @@
 # Checkers
 
-This is a Java Swing project for an AP CSA (Computer Science A) class. The project implements a Checkers game, allowing players to play against each other on a graphical user interface.
+This is a Java Swing project for our AP CSA (Computer Science A) final. The project implements a Checkers game, allowing players to play against each other on a graphical user interface.
 
 ## Getting Started
 
