@@ -29,7 +29,7 @@ public class Rule extends JFrame implements ActionListener {// Rule class
         
        
         //set the home button bound/location 
-        homeButton.setBounds(680, 10, 100, 30);
+        homeButton.setBounds(680, 10, 55, 47);
         homeButton.addActionListener(this);
         homeButton.setActionCommand("SecondButton");
    
@@ -88,8 +88,8 @@ public class Rule extends JFrame implements ActionListener {// Rule class
 	 */
     public void actionPerformed(ActionEvent evt) {
            // if the button is Start Game take the user to the game screen 
-        if(evt.getActionCommand().equals("Start Game")) {
-	        GameScreen g= new GameScreen("Checkers!", p1, p2, 0, 0, 0);
+        if(evt.getActionCommand().equals("FirstButton")) {
+	        GameScreen g= new GameScreen("Checkers!", p1, p2, 1, 0, 0);
             // set the game screen visible 
             g.setVisible(true);
         }
