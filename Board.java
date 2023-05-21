@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+/**
+ * @author ruthwika
+ *
+ */
 public class Board extends JPanel implements MouseListener {
     JPanel board = new JPanel();
 	private boolean inProgress = true;

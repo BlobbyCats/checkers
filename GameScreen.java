@@ -35,7 +35,17 @@ public class GameScreen extends JFrame implements ActionListener {
 	JLabel p2title = new JLabel();
 
 	SpringLayout layout = new SpringLayout();
-
+	/**
+ 	* Creates a GameScreen window displaying the board, resign button, undo button, 
+	* and allows the users to play the game
+ 	* 
+	* @param title - string containing the title of the frame
+ 	* @param gNum - num of how many games have been played including the current game
+ 	* @param player1Wins - player one's number of wins
+ 	* @param player2Wins - player two's number of wins
+ 	* @param player1 - player one's name
+ 	* @param player2 - player two's name 
+ 	*/
 	public GameScreen(String title, String player1, String player2, int gNum, int player1Wins, int player2Wins) {
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,6 +146,9 @@ public class GameScreen extends JFrame implements ActionListener {
 		p1title.setForeground(Color.WHITE);
 		p2title.setForeground(Color.WHITE);
 	}
+	/**
+	 * Updates the move count and the text of who's turn it is to play based on the move count and the color of each player's pieces
+	 */
 	public void updateTurn() {
 		move++;
 		if ((move % 2) == 1) {
@@ -165,6 +178,9 @@ public class GameScreen extends JFrame implements ActionListener {
 			}
 		}
 	}
+	/**
+	 * Randomizes the colors for each player
+	 */
 	public void pickColors() {
 		int rand = (int)(Math.random() * 2);
 		if (rand == 0) {
@@ -176,12 +192,27 @@ public class GameScreen extends JFrame implements ActionListener {
 			p1.setColor("red");
 		}
 	}
+	/**
+	 * Returns whether or not it is player 1's turn
+	 * @return isP1Turn - boolean that depicts if it is player 1's turn
+	 */
 	public boolean getP1Turn() {
 		return isP1Turn;
 	}
+	/**
+	 * Returns whether or not it is player 2's turn
+	 * @return isP2Turn - boolean that depicts if it is player 2's turn
+	 */
 	public boolean getP2Turn() {
 		return isP2Turn;
 	}
+	/**
+	 * Rescales the image inputted to fit the icon on a button
+	 * @param fileName - string that includes the filename of the image
+	 * @param button - JButton that the image is supposed to fit
+	 * @param width - int that determines the width of the image
+	 * @param height - int that determines the height of the image
+	 */
 	public void rescaleImage(String fileName, JButton button, int width, int height) {
 		ImageIcon icon = new ImageIcon(fileName);
 		Image img = icon.getImage();
@@ -189,6 +220,10 @@ public class GameScreen extends JFrame implements ActionListener {
 		icon = new ImageIcon(img);
 		button.setIcon(icon);
 	}
+	/**
+	 * Switches to the final screen when a user resigns, requests for a draw, allows for the rules pop-up and switches back to the home page when the user presses home
+	 * @param e - ActionEvent that occurs when a user clicks on a JButton
+	 */
 	public void actionPerformed(ActionEvent e) {
 		while (inProgress) {
 			if (e.getActionCommand().equals("resign")) {

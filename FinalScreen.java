@@ -194,10 +194,4 @@ public class FinalScreen extends JFrame implements ActionListener{
 
 		}
 	}
-
-	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		FinalScreen demo = new FinalScreen(5, 2, 3, "name1", "name2", "p1");
-		demo.setVisible(true);*/
-
 }
