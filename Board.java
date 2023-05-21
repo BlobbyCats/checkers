@@ -216,13 +216,13 @@ public class Board extends JPanel implements MouseListener {
                  g.setColor(Color.RED);
                  g.fillOval(6 + col*32, 6 + row*32, 24, 24);
                  g.setColor(Color.WHITE);
-                 g.drawString("K", 9 + col*32, 18 + row*32);
+                 g.drawString("K", 14 + col*32, 23 + row*32);
                  break;
               case blackKing:
                  g.setColor(Color.BLACK);
                  g.fillOval(6 + col*32, 6 + row*32, 24, 24);
                  g.setColor(Color.WHITE);
-                 g.drawString("K", 9 + col*32, 18 + row*32);
+                 g.drawString("K", 14 + col*32, 23 + row*32);
                  break;
               }
            }
