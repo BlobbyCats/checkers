@@ -232,13 +232,13 @@ public class GameScreen extends JFrame implements ActionListener {
 					if (isP1Turn) {
 						whoWins = "p2";
 						p2.incrementWins();
-						FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+						FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor(), board);
 						this.setVisible(false);
 					}
 					else {
 						whoWins = "p1";
 						p1.incrementWins();
-						FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+						FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor(), board);
 						this.setVisible(false);
 					}
 				}
@@ -248,7 +248,7 @@ public class GameScreen extends JFrame implements ActionListener {
 				int n = JOptionPane.showConfirmDialog(this, "Are you sure you want a draw?", "Message", JOptionPane.YES_NO_OPTION);
 				if (n == JOptionPane.YES_OPTION) {
 					whoWins = "neither";
-					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor(), board);
 					this.setVisible(false);
 				}
 				break;

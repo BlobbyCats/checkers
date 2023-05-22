@@ -47,11 +47,11 @@ public class FinalScreen extends JFrame implements ActionListener{
  * @param n2 - player two's name
  * @param whoWins - string containing which player wins, or if neither wins 
  */
-	public FinalScreen(int gNum, int score1, int score2, String n1, String n2, String whoWins, String p1Color, String p2Color) {
+	public FinalScreen(int gNum, int score1, int score2, String n1, String n2, String whoWins, String p1Color, String p2Color, Board board) {
 		gameN = gNum; 
 		p1 = new Player(n1, score1, p1Color);
 		p2 = new Player(n2, score2, p2Color);
-		b2 = new Board(p1.getName(), p2.getName(), gameN, p1.getWins(), p2.getWins(), p1.getColor(), p2.getColor(), null);
+		b2 = board;
 		p1title.setText(n1);
 		p1title.setForeground(Color.white);
 		p2title.setText(n2);
