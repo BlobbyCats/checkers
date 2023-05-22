@@ -46,7 +46,6 @@ git clone https://github.com/BlobbyCat/checkers.git
 - `Colors.java`: Hosts the specific RGB values used for coloring in the game.
 - `Player.java`: Represents a player in the game.
 - `HomePage.java`: Handles the game's homescreen.
-- `HomePageBkgd.java`: Sets background color for the homescreen
 - `GameScreen.java`: Handles the game's in progress screen.
 - `FinalScreen.java`: Handles the game's ending screen.
 - `Rule.java`: Holds the rules of the game.
