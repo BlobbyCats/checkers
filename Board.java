@@ -65,18 +65,20 @@ public class Board extends JPanel implements MouseListener {
      * @param index  the index of the legal move
      */
 	public void clickSquare(int row, int col, int index) {
-		if (index < legalMoves.length && legalMoves[index].getFromRow() == row && legalMoves[index].getFromCol() == col) {
-			selectedRow = row;
-            selectedCol = col;
-            repaint();
+		if (legalMoves != null) {
+			if (index < legalMoves.length && legalMoves[index].getFromRow() == row && legalMoves[index].getFromCol() == col) {
+				selectedRow = row;
+				selectedCol = col;
+				repaint();
+			}
+			else if (index+1 != legalMoves.length) {
+				clickSquare(row, col, index + 1);
+			}
+			for (int i = 0; i < legalMoves.length; i++)
+				if (legalMoves[i].getFromRow() == selectedRow && legalMoves[i].getFromCol() == selectedCol && legalMoves[i].getToRow() == row && legalMoves[i].getToCol() == col) {
+					move(legalMoves[i]);
+				}
 		}
-		else if (index+1 != legalMoves.length) {
-			clickSquare(row, col, index + 1);
-		}
-		for (int i = 0; i < legalMoves.length; i++)
-            if (legalMoves[i].getFromRow() == selectedRow && legalMoves[i].getFromCol() == selectedCol && legalMoves[i].getToRow() == row && legalMoves[i].getToCol() == col) {
-                move(legalMoves[i]);
-            }
 	}
 	/**
      * Returns the piece at the specified position on the board.
@@ -315,7 +317,7 @@ public class Board extends JPanel implements MouseListener {
            }
         }
 
-		if (inProgress) {
+		if (inProgress && legalMoves != null) {
 		 	g.setColor(Color.cyan);
 		 	for (int i = 0; i < legalMoves.length; i++) {
 				g.drawRect(2 + legalMoves[i].getFromCol()*32, 2 + legalMoves[i].getFromRow()*32, 32, 32);
@@ -369,6 +371,7 @@ public class Board extends JPanel implements MouseListener {
 			legalMoves = getLegalMoves(currentPlayer);
 			game.updateTurn();
 			if (legalMoves == null) {
+				inProgress = false;
 				if (p1.getColor() == "black") {
 					String whoWins = "p2";
 					p2.incrementWins();
@@ -449,7 +452,7 @@ public class Board extends JPanel implements MouseListener {
 	 * @param e
 	 */
     public void mousePressed(MouseEvent e) {
-		if (inProgress) {
+		if (inProgress && legalMoves != null) {
 			int col = (e.getX() - 2) / 32;
         	int row = (e.getY() - 2) / 32;
         	if (col >= 0 && col < 8 && row >= 0 && row < 8) {
