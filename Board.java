@@ -388,6 +388,7 @@ public class Board extends JPanel implements MouseListener {
 			legalMoves = getLegalMoves(currentPlayer);
 			game.updateTurn();
 			if (legalMoves == null) {
+				inProgress = false;
 				if (p1.getColor() == "red") {
 					String whoWins = "p2";
 					p2.incrementWins();
