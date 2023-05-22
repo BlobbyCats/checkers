@@ -1,3 +1,7 @@
+/**
+ * @author anushka
+ *
+ */
 
 public class CheckersDriver {
 
