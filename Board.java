@@ -373,12 +373,14 @@ public class Board extends JPanel implements MouseListener {
 					String whoWins = "p2";
 					p2.incrementWins();
 					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					game.setVisible(false);
 					this.setVisible(false);
 				}
 				else {
 					String whoWins = "p1";
 					p1.incrementWins();
 					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					game.setVisible(false);
 					this.setVisible(false);
 				}
 			}
@@ -392,12 +394,14 @@ public class Board extends JPanel implements MouseListener {
 					String whoWins = "p2";
 					p2.incrementWins();
 					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					game.setVisible(false);
 					this.setVisible(false);
 				}
 				else {
 					String whoWins = "p1";
 					p1.incrementWins();
 					FinalScreen f = new FinalScreen(gameNum, p1.getWins(), p2.getWins(), p1.getName(), p2.getName(), whoWins, p1.getColor(), p2.getColor());
+					game.setVisible(false);
 					this.setVisible(false);
 				}
 			}
