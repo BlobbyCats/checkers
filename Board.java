@@ -65,18 +65,23 @@ public class Board extends JPanel implements MouseListener {
      * @param index  the index of the legal move
      */
 	public void clickSquare(int row, int col, int index) {
-		if (legalMoves != null) {
+		if (this.legalMoves != null) {
 			if (index < legalMoves.length && legalMoves[index].getFromRow() == row && legalMoves[index].getFromCol() == col) {
 				selectedRow = row;
 				selectedCol = col;
 				repaint();
 			}
 			else if (index+1 != legalMoves.length) {
-				clickSquare(row, col, index + 1);
+				if (legalMoves != null) {
+					clickSquare(row, col, index + 1);
+				}
 			}
 			for (int i = 0; i < legalMoves.length; i++)
 				if (legalMoves[i].getFromRow() == selectedRow && legalMoves[i].getFromCol() == selectedCol && legalMoves[i].getToRow() == row && legalMoves[i].getToCol() == col) {
 					move(legalMoves[i]);
+					if (legalMoves == null) {
+						break;
+					}
 				}
 		}
 	}
